@@ -1,0 +1,28 @@
+//Inserts Tony Stark's Record into the client table
+INSERT INTO  clients
+( clientFirstname , clientLastname , clientEmail , clientPassword , comments )
+VALUES  
+( 'Tony' , ' Stark' , 'tony@starkent.com' ,  'Iam1ronM@n' ,  'I am the real Ironman' )
+
+//Updates Tony Stark's client level to 
+UPDATE  clients
+ SET  clientLevel =  3
+WHERE clientId = 1
+
+//Replaces Nylon Rope  with Climbing Rope
+UPDATE  inventory
+SET  invName = replace( invName  , 'Nylon' , 'Climbing'  ),
+ invDescription = replace( invDescription , 'nylon rope' , 'climbing rope' )
+WHERE!!!!!!!
+        
+ //Inner Join 
+ SELECT  invName, categoryName
+FROM  inventory
+INNER JOIN categories ON
+inventory.categoryId = categories.categoryId
+WHERE
+categories.categoryId = 3
+
+//Delete Koenigsegg CCX car
+DELETE  FROM  inventory
+WHERE  invId = 7

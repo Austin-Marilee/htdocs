@@ -1,0 +1,250 @@
+/*-----MAIN/SMALL VIEW----*/
+
+* { box-sizing: border-box;}
+
+body {
+    font-size: 100%;
+    font-family: 'Kalam', cursive;
+    background-image: url("../images/site/background.jpg");
+    background-size: 100%;
+}
+.top-layer { background-color: #fff;}
+
+/*-----HEADER-----*/
+header {margin: 15px 15px 0 15px;}
+
+img.logo {
+    max-width: 100px;
+    margin: 15px 30px;
+}
+div.folder {
+    margin: 30px 20px 0 0;
+    float: right;
+    font-size: 1rem;
+}
+div.folder a {
+    text-decoration: none;
+    color: #000;
+}
+img.folder {
+    padding-right: 5px;
+    max-width: 30px;
+}
+
+/*-------NAVIGATION-------*/
+nav { 
+    background-color: #d22226; 
+    margin: 0px 15px;
+}
+
+nav button {
+    margin: .2rem 14px;
+    background-color: transparent;
+    border: none;
+    font-size: 1.6rem;
+    color: #fff;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0;
+}
+nav ul li a {
+    display: flex;
+    flex-flow: row wrap;
+    padding: .8rem 30px;
+    text-decoration: none;
+    color: #fff;;
+    border: 1px solid rgba(0,0,0,0.3);
+    font-size: 1rem;
+}
+nav ul.mainmneu, li.active a {
+    background-color: #fff;
+    color: #000;
+}
+nav ul li a:hover {
+    background-color: #fff;
+    color: #000;
+}
+nav ul.hide {display: none;}
+
+/*-----------MAIN------------*/
+h1 {
+    margin: 0px;
+    font-family: 'Kalam', cursive;
+    font-size: 1.5rem;
+    padding: 20px 20px 10px 30px;
+}
+main {
+    margin: 0px 15px;
+    padding-bottom: 75px;
+    border-bottom:  4px solid #000;
+}
+
+/*-----------BANNER-----------*/
+section.banner {
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+}
+img.rocket {
+    width: 100%;
+    grid-column: 1 / span 4;
+    grid-row: 1  / 2;
+}
+ul.rocket_ad {
+    grid-column: 3 / span 2;
+    grid-row: 1 / 1;
+    list-style-type: none;
+    color: #990033;
+    font-size:  .7rem;
+    margin: 0;
+    padding: 0 5px 0 0;
+    font-weight: bold;
+}
+ul.rocket_ad h2 { margin-bottom: 0px;}
+
+ul.rocket_ad img {
+    margin-top: 5px;
+    max-width: 155px;
+}
+
+/*-----------REVIEWS & RECIPES-----------*/
+h3 { margin: 30px 0px 0px 30px;}
+
+ul.reviews { 
+    margin: 5px 20px; 
+    font-size: .8rem;
+}
+div.recipeGallery {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-gap: 5px;
+    text-align: center;
+    margin: 5px 50px 5px 20px;
+
+}
+figure.gallery {
+    margin: 0px;
+    background-color: #808080;
+}
+figure  p  {
+    background-color: #fff;
+    padding-top: 10px;
+}
+figcaption {
+    background-color: #fff;
+    padding: 10px 0 20px 0;
+    font-size: .8rem;
+}
+
+/*--------FOOTER------------*/
+footer {
+    padding: 20px 20px 30px 20px;
+    text-align: center;
+    font-size: 14px;
+    margin: 0px 15px 30px 15px;
+}
+footer p { margin: 0;}
+
+/*-----LOGIN/REGISTRATION-------*/
+
+form {
+    margin: 0px 30px  15px 30px;
+    max-width: 800px;
+}
+/*NEW HTML5 VALIDATION*/
+label input {
+    display: block;
+    color: #222E50;
+    font-size:1.2em;
+    width: 100%;
+    padding: 10px;
+    margin: 0px 0px 10px 0px;
+    max-width: 500px;
+    font-family: 'Kalam', cursive;
+    border: solid 1px 0000ee;
+    background-image: url(../images/site/ico_validation.png);
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    background-color: #e8e8e8;
+}
+div.button {
+    padding: 0px 30px;
+}
+input.submitBtn {
+    -webkit-appearance: none; /*remove the apple mobile default styling*/
+    color: #fff;
+    border: solid 1px #de2226;
+    border-radius: 5px;
+    width: 100%;
+    background: #de2226;
+    font-family: 'Kalam', cursive;
+    font-size: 1.5em; 
+    max-width: 500px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+div.newBtn {
+    background-color: #808080;
+    border: none;
+    font-family: 'Kalam', cursive;
+    padding: 10px;
+    cursor: pointer;
+    display: block;
+    border-radius: 5px;
+    max-width: 500px;
+    margin: 15px 30px 0px 30px;
+    text-align: center;
+    color: #fff;
+}
+a  {
+    text-decoration: none;
+}
+div.req_password {
+    padding: 0px 30px 15px 30px;
+    font-size: 1.2rem;
+    max-width: 600px;
+}
+.result {
+    color: #d22226;
+    margin: 0;
+}
+/*The input that currently has the focus*/
+input:focus {
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.5) inset;
+}
+/*identifies all the required fields*/
+input:required {
+    background-position: 4px -61px; /*shows the red star*/
+}
+/*Validation*/
+input:focus:invalid {
+    background-position: 4px -111px; /*shows the yelllow cirle*/
+}
+/*Valid*/
+input:required:valid {
+    background-color: #fff;
+    background-position: 4px -161px; /*shows the green check*/
+}
+
+/*----ADD CATEGORY & PRODUCTS PAGES----*/
+fieldset {
+    max-width: 600px;
+    border: #808080  solid 5px;
+    border-radius: 5px;
+    margin-bottom: 40px;
+}
+fieldset legend {
+    background-color: #0000ee;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+input.clearLabel {
+    background-color: #fff;
+}
+div.dropdown {
+    padding: 10px 0px 20px 0px;
+}
