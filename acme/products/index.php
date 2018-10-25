@@ -80,6 +80,7 @@ switch ($action) {
         }
         break;
 
+           
     case 'addCategory':
 // Filter and store the data
         $categoryName = filter_input(INPUT_POST, 'categoryName');
@@ -96,8 +97,7 @@ switch ($action) {
 
 // Check and report the result
         if ($regOutcome === 1) {
-            $message = "<p class='result'>You successfully added the $categoryName  category to the database.</p>";
-            include '../view/management.php';
+            header("Location: /acme/products/index.php");
             exit;
         } else {
             $message = "<p class='result'>*Sorry, but adding the category was unsuccessful.</p>";

@@ -46,15 +46,16 @@
                     <label>Please choose a product category:</label>
                     <div class="dropdown"> <?php echo $catList; ?></div>
                     <label><input type="text" name="invName" id="invName" placeholder="Product Name"></label>
-                    <label><input type="text" name="invDescription" id="invDescription" placeholder="Description" size="40px"></label>
+                    <label><input type="text" name="invDescription" id="invDescription" placeholder="Description"></label>
                 </fieldset>
 
                 <fieldset>
                     <legend>Product Images</legend>
 <!--                    <label>Product image <input type="file" name="invImage" id="invImage" class="clearLabel"></label>
                     <label>Image Thumbnail<input type="file" name="invThumbnail" id="invThumbnail" class="clearLabel"></label>-->
-                    <label>Product image <input type="text" name="invImage" id="invImage" class="clearLabel"></label>
-                    <label>Image Thumbnail<input type="text" name="invThumbnail" id="invThumbnail" class="clearLabel"></label>
+                    <label>Product image <input type="text" name="invImage" value="/acme/images/no-image.png" id="invImage"></label>
+       
+                    <label>Image Thumbnail<input type="text" name="invThumbnail" value="/acme/images/no-image.png" id="invThumbnail" ></label>
                 </fieldset>
 
                 <fieldset>
@@ -71,10 +72,12 @@
                     <label><input type="text" name="invLocation" id="invLocation" placeholder="Location"></label>
                     <label><input type="text" name="invVendor" id="invVendor" placeholder="Vendor"></label>
                 </fieldset>
-                <div><input type="submit" value="Add Product" class="submitBtn">
+                
+                <fieldset>
+                <input type="submit" value="Add Product" class="submitBtn">
                     <!--Add the action key - value pair-->
                     <input type="hidden" name="action" value="addProduct">
-                </div>
+                </fieldset>
             </form>
 
         </main>

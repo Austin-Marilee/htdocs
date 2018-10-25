@@ -30,21 +30,26 @@
             <h1>Add a Category</h1>
             <div class="req_password"> Please enter the name of the Category you wish to add.</div>
 
-            <div class="req_password">            
+            <div class="req_password">     
+
                 <?php
                 if (isset($message)) {
                     echo $message;
                 }
                 ?>
+                
+
+                
             </div>
             
             <form  method="post" action="/acme/products/index.php">
                 <label><input type="text" name="categoryName" id="categoryName" placeholder="Category Name"></label>
 
                 <div>
-                    <input type="submit" value="Add Category" class="submitBtn">
+                    <input type="submit" value="Add Category" name="action"  class="submitBtn">
                     <!--Add the action key - value pair-->
                     <input type="hidden" name="action" value="addCategory">
+
                 </div>
             </form>
 
