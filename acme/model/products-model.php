@@ -40,7 +40,7 @@ function addProduct($invName, $invDescription, $invImage, $invThumbnail, $invPri
     $stmt->bindValue(':invDescription', $invDescription, PDO::PARAM_STR);
     $stmt->bindValue(':invImage', $invImage, PDO::PARAM_STR);
     $stmt->bindValue(':invThumbnail', $invThumbnail, PDO::PARAM_STR);
-    $stmt->bindValue(':invPrice', $invPrice, PDO::PARAM_STR);
+    $stmt->bindValue(':invPrice', $invPrice, PDO::PARAM_FLOAT);
     $stmt->bindValue(':invStock', $invStock, PDO::PARAM_INT);
     $stmt->bindValue(':invSize', $invSize, PDO::PARAM_INT);
     $stmt->bindValue(':invWeight', $invWeight, PDO::PARAM_INT);

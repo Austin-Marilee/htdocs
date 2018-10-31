@@ -1,3 +1,20 @@
+<?php
+// Drop down menu for the products page
+$catList = '<select name="categoryId" class="drop-down" > ';
+$catList .= '<option value="select" disabled selected>Choose a Category</option>';
+
+foreach ($categories as $category) {
+        $catList .= "<option value='. $category[categoryId] ' " ;
+    if(isset($categoryId)) {
+        if($category['categoryId'] === $categoryId) {
+    }
+    }
+    $catList .= ">$category[categoryName]</option>";
+}
+$catList .= '</select>';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en-US">
 
@@ -18,11 +35,11 @@
 
         <!--header-->
         <header class="top-layer">
-            <?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/header.php'; ?> 
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/header.php'; ?> 
         </header>
 
         <nav>
-            <?php echo $navList; ?>
+<?php echo $navList; ?>
         </nav>
 
         <!--main styles-->
@@ -31,11 +48,11 @@
             <div class="req_password"> Please complete the form to add a product. </div>
 
             <div class="req_password">            
-                <?php
-                if (isset($message)) {
-                    echo $message;
-                }
-                ?>
+<?php
+if (isset($message)) {
+    echo $message;
+}
+?>
             </div>
 
 
@@ -43,38 +60,69 @@
 
                 <fieldset>
                     <legend>Product Name & Description</legend>
-                    <label>Please choose a product category:</label>
                     <div class="dropdown"> <?php echo $catList; ?></div>
-                    <label><input type="text" name="invName" id="invName" placeholder="Product Name"></label>
-                    <label><input type="text" name="invDescription" id="invDescription" placeholder="Description"></label>
+                    <label>Product Name</label><input type="text" name="invName" id="invName"   <?php if (isset($invName)) {
+    echo "value='$invName'";
+}
+?> required>                   
+                    <label>Description</label><br><textarea name="invDescription" id="invDescription" <?php if (isset($invDescription)) {
+    echo "value='$invDescription'";
+}
+?> required> </textarea>
                 </fieldset>
 
                 <fieldset>
                     <legend>Product Images</legend>
-<!--                    <label>Product image <input type="file" name="invImage" id="invImage" class="clearLabel"></label>
-                    <label>Image Thumbnail<input type="file" name="invThumbnail" id="invThumbnail" class="clearLabel"></label>-->
-                    <label>Product image <input type="text" name="invImage" value="/acme/images/no-image.png" id="invImage"></label>
-       
-                    <label>Image Thumbnail<input type="text" name="invThumbnail" value="/acme/images/no-image.png" id="invThumbnail" ></label>
+                    <label>Product image </label><input type="text" name="invImage" value="/acme/images/no-image.png" id="invImage"  <?php if (isset($invImage)) {
+    echo "value='$invImage'";
+}
+?> required>
+                    <label>Image Thumbnail</label><input type="text" name="invThumbnail" value="/acme/images/no-image.png" id="invThumbnail"  <?php if (isset($invThumbnail)) {
+    echo "value='$invThumbnail'";
+}
+?> required>
                 </fieldset>
 
                 <fieldset>
                     <legend>Product Details</legend>
-                    <label><input type="number" min="0" step="0.01"  name="invPrice" id="invPrice" placeholder="Price"></label>
-                    <label><input type="text" name="invSize" id="invSize" placeholder="Size"></label>
-                    <label><input type="text" name="invWeight" id="invWeight" placeholder="Weight"></label>
-                    <label><input type="text" name="invStyle" id="invStyle" placeholder="Style"></label>
+                    <label>Price</label><input type="number" min="0" step="0.01"  name="invPrice" id="invPrice"  <?php if (isset($invPrice)) {
+                                                             echo "value='$invPrice'";
+                                                         }
+?>  required>
+                    <label>Size</label><input type="number" name="invSize" id="invSize"  <?php if (isset($invSize)) {
+                                                  echo "value='$invSize'";
+                                              }
+?> required>
+                    <label>Weight</label><input type="number" name="invWeight" id="invWeight"  <?php if (isset($invWeight)) {
+                                                   echo "value='$invWeight'";
+                                               }
+?> required>
+                    <label>Style</label><input type="text" name="invStyle" id="invStyle"  <?php if (isset($invStyle)) {
+                                                   echo "value='$invStyle'";
+                                               }
+?> required>
                 </fieldset>
 
                 <fieldset>
                     <legend>Product Availability</legend>
-                    <label><input type="number" name="invStock" id="invStock" placeholder="Available Stock"></label>
-                    <label><input type="text" name="invLocation" id="invLocation" placeholder="Location"></label>
-                    <label><input type="text" name="invVendor" id="invVendor" placeholder="Vendor"></label>
+                    <label>Stock Available</label><input type="number" name="invStock" id="invStock" <?php if (isset($invStock)) {
+                                                   echo "value='$invStock'";
+                                               }
+?>  required>
+
+                    <label>Product Location</label><input type="text" name="invLocation" id="invLocation" <?php if (isset($invLocation)) {
+                                                   echo "value='$invLocation'";
+                                               }
+?>  required>
+
+                    <label>Vendor</label><input type="text" name="invVendor" id="invVendor"   <?php if (isset($invVendor)) {
+                                                   echo "value='$invVendor'";
+                                               }
+?>  required>
                 </fieldset>
-                
+
                 <fieldset>
-                <input type="submit" value="Add Product" class="submitBtn">
+                    <input type="submit" value="Add Product" class="submitBtn">
                     <!--Add the action key - value pair-->
                     <input type="hidden" name="action" value="addProduct">
                 </fieldset>
@@ -84,7 +132,7 @@
 
         <!--footer-->
         <footer class="top-layer">
-            <?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/footer.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/footer.php'; ?>
         </footer>
 
         <!--scripts-->

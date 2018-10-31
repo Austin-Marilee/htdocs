@@ -36,14 +36,12 @@
                 if (isset($message)) {
                     echo $message;
                 }
-                ?>
-                
-
-                
+                ?>               
             </div>
             
             <form  method="post" action="/acme/products/index.php">
-                <label><input type="text" name="categoryName" id="categoryName" placeholder="Category Name"></label>
+                <label>Category Name</label><input type="text" name="categoryName" id="categoryName" <?php if (isset($categoryName)) {
+                    echo "value='$categoryName'"; } ?> required>
 
                 <div>
                     <input type="submit" value="Add Category" name="action"  class="submitBtn">
@@ -52,7 +50,6 @@
 
                 </div>
             </form>
-
 
         </main>
 

@@ -77,8 +77,6 @@
                     </figure>
                 </div>                              
             </section>   
-            
-            <
 
         </main>
 

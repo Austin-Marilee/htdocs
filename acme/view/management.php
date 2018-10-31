@@ -37,8 +37,8 @@
                 ?>
             </div>
 
-            <a href="/acme/products/index.php?action=categoryView"  ><div class="newBtn">Click here to add a Category</div></a>
-            <a href="/acme/products/index.php?action=productView"  ><div class="newBtn">Click here to add a Product</div></a>
+            <a href="/acme/products/index.php?action=categoryView"  ><div class="addBtn">Click here to add a Category</div></a>
+            <a href="/acme/products/index.php?action=productView"  ><div class="addBtn">Click here to add a Product</div></a>
 
         </main>
 

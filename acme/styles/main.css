@@ -149,17 +149,22 @@ footer p { margin: 0;}
 /*-----LOGIN/REGISTRATION-------*/
 
 form {
-    margin: 0px 30px  15px 30px;
+    margin: 0px 30px;
     max-width: 800px;
 }
 /*NEW HTML5 VALIDATION*/
-label input {
+label {
+ margin: 0 0 5px 5px;
+ font-size: 1.1rem;
+ padding-bottom: 10px;
+}
+ input {
     display: block;
     color: #222E50;
     font-size:1.2em;
     width: 100%;
-    padding: 10px;
-    margin: 0px 0px 10px 0px;
+    padding: 10px 0px 15px 25px;
+    margin: 0px 0px 20px 0px;
     max-width: 500px;
     font-family: 'Kalam', cursive;
     border: solid 1px #e8e8e8;
@@ -168,6 +173,7 @@ label input {
     border-radius: 5px;
     background-color: #e8e8e8;
 }
+
 div.button {
     padding: 0px 30px;
 }
@@ -194,9 +200,24 @@ div.newBtn {
     display: block;
     border-radius: 5px;
     max-width: 500px;
-    margin: 15px 30px 0px 30px;
+    margin: 15px 0px 0px 0px;
     text-align: center;
     color: #fff;
+}
+
+div.addBtn {
+        background-color: #808080;
+    border: none;
+    font-family: 'Kalam', cursive;
+    padding: 10px;
+    cursor: pointer;
+    display: block;
+    border-radius: 5px;
+    max-width: 500px;
+    margin: 15px 30px 0px 20px;
+    text-align: center;
+    color: #fff;
+    
 }
 
 a  {
@@ -204,13 +225,21 @@ a  {
 }
 div.req_password {
     padding: 0px 30px 15px 30px;
-    font-size: 1.2rem;
-    max-width: 600px;
+    font-size: 1rem;
+    max-width: 575px;
+}
+p.password {
+    font-size: .9rem;
+    padding-left: 5px;
+    margin: 0 0 4px 0;
+    max-width: 500px;
+    color: #808080;
 }
 .result {
     color: #d22226;
     margin: 0;
 }
+
 /*The input that currently has the focus*/
 input:focus {
     box-shadow: 1px 1px 5px rgba(0,0,0,0.5) inset;
@@ -219,9 +248,12 @@ input:focus {
 input:required {
     background-position: 4px -61px; /*shows the red star*/
 }
+textarea:required {
+    background-position: 10px -61px; /*shows the red star*/
+}
 /*Validation*/
 input:focus:invalid {
-    background-position: 4px -111px; /*shows the yelllow cirle*/
+    background-position: 6px -110px; /*shows the yelllow cirle*/
 }
 /*Valid*/
 input:required:valid {
@@ -246,6 +278,29 @@ fieldset legend {
 fieldset:last-child {
     border: none;
 }
-div.dropdown {
-    padding: 10px 0px 20px 0px;
+
+select.drop-down {
+    color: #222E50;
+    font-size:1.2em;
+    width: 100%;
+    padding: 3px 3px 3px 20px;
+    margin: 0px 0px 20px 0px;
+    max-width: 500px;
+    font-family: 'Kalam', cursive;
+    border: solid 1px #e8e8e8;
+    background-image: url(../images/site/ico_validation.png);
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    background-color: #e8e8e8;
+
+}
+select.drop-down:hover {
+    cursor:pointer;
+}
+
+textarea {
+    height: 100px;
+    width: 100%;
+    padding: 10px;
+    font-family: 'Kalam', cursive;
 }
