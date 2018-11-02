@@ -16,24 +16,17 @@ require_once '../model/products-model.php';
 // Get the array of categories
 $categories = getCategories();
 
-// Build a navigation bar using the $categories array
-$navList = '<button onclick="toggleNavMenu()">&#9776;</button> <ul class="hide mainmenu" id="primaryNav">';
-$navList .= "<li><a href='/acme/index.php' title='View the Acme home page'>Home</a></li>";
-
-foreach ($categories as $category) {
-    $navList .= "<li><a href='/acme/index.php?action=" . urlencode($category['categoryName']) . "' title='View our $category[categoryName] product line'>$category[categoryName]</a></li>";
-}
-$navList .= '</ul>';
+//Get the Navigation function
+$navList = buildNav($categories);
 
 //// Drop down menu for the products page
-//$catList = '<select name="categoryId" class="drop-down" > ';
-//$catList .= '<option value="select" disabled selected>Choose a Category</option>';
+// $catList = '<select name="categoryId" id="categoryId" class="drop-down" > ';
+//$catList .= '<option  disabled selected>Category Name</option>';
 //
 //foreach ($categories as $category) {
-//    $catList .= "<option value=" . $category['categoryId'] . ">$category[categoryName]</option>";
+//    $catList .= "<option value='. $category[categoryId] '>$category[categoryName]</option>";
 //}
 //$catList .= '</select>';
-
 
 // Get the value from the action name - value pair
 $action = filter_input(INPUT_POST, 'action');
@@ -45,12 +38,12 @@ switch ($action) {
 
     case 'addProduct':
 // Filter and store the data
-        
-        $invName = filter_input(INPUT_POST, 'invName',  FILTER_SANITIZE_STRING);
+
+        $invName = filter_input(INPUT_POST, 'invName', FILTER_SANITIZE_STRING);
         $invDescription = filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_STRING);
         $invImage = filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_STRING);
         $invThumbnail = filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_STRING);
-        $invPrice = filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT);
+        $invPrice = filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $invStock = filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT);
         $invSize = filter_input(INPUT_POST, 'invSize', FILTER_SANITIZE_NUMBER_INT);
         $invWeight = filter_input(INPUT_POST, 'invWeight', FILTER_SANITIZE_NUMBER_INT);
@@ -58,7 +51,6 @@ switch ($action) {
         $categoryId = filter_input(INPUT_POST, 'categoryId', FILTER_SANITIZE_STRING);
         $invVendor = filter_input(INPUT_POST, 'invVendor', FILTER_SANITIZE_STRING);
         $invStyle = filter_input(INPUT_POST, 'invStyle', FILTER_SANITIZE_STRING);
-
 
 // Check for missing data
         if (empty($invName) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invSize) || empty($invWeight) || empty($invLocation) || empty($categoryId) || empty($invVendor) || empty($invStyle)) {
@@ -82,7 +74,6 @@ switch ($action) {
         }
         break;
 
-           
     case 'addCategory':
 // Filter and store the data
         $categoryName = filter_input(INPUT_POST, 'categoryName', FILTER_SANITIZE_STRING);
@@ -107,7 +98,6 @@ switch ($action) {
             exit;
         }
         break;
-
 
     case 'productView':
         include '../view/product.php';

@@ -18,3 +18,15 @@ function checkPassword($clientPassword){
  return preg_match($pattern, $clientPassword);
 }
 
+// Build a navigation bar
+function buildNav($categories) {
+    // Build a navigation bar using the $categories array
+$navList = '<button onclick="toggleNavMenu()">&#9776;</button> <ul class="hide mainmenu" id="primaryNav">';
+$navList .= "<li><a href='/acme/index.php' title='View the Acme home page'>Home</a></li>";
+
+foreach ($categories as $category) {
+    $navList .= "<li><a href='/acme/index.php?action=" . urlencode($category['categoryName']) . "' title='View our $category[categoryName] product line'>$category[categoryName]</a></li>";
+}
+$navList .= '</ul>';
+return $navList;
+}

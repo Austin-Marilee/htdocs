@@ -40,8 +40,7 @@
             </div>
             
             <form  method="post" action="/acme/products/index.php">
-                <label>Category Name</label><input type="text" name="categoryName" id="categoryName" <?php if (isset($categoryName)) {
-                    echo "value='$categoryName'"; } ?> required>
+                <label>Category Name</label><input type="text" name="categoryName" id="categoryName"  required>
 
                 <div>
                     <input type="submit" value="Add Category" name="action"  class="submitBtn">
