@@ -22,7 +22,7 @@
         </header>
 
         <nav>
-            <?php echo $navList; ?>
+            <?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/navigation.php'; ?> 
         </nav>
 
         <!--main styles-->
@@ -38,12 +38,12 @@
             </div>
 
             <form  method="post" action="/acme/accounts/index.php">
-                <label>First Name</label><input type="text" name="clientFirstname" id="clientFirstname"  <?php if(isset($clientFirstname)){echo "value='$clientFirstname'";}  ?>  required>
-                <label>Last Name</label><input type="text" name="clientLastname" id="clientLastname"   <?php if(isset($clientLastname)){echo "value='$clientLastname'";}  ?> required>
-                <label>Email Address</label><input type="email" name="clientEmail" id="clientEmail"  <?php if(isset($clientEmail)){echo "value='$clientEmail'";}  ?> required>
+                <label>First Name</label><input type="text" name="clientFirstname" id="clientFirstname" placeholder="First Name"<?php if(isset($clientFirstname)){echo "value='$clientFirstname'";}  ?>  required>
+                <label>Last Name</label><input type="text" name="clientLastname" id="clientLastname"  placeholder="Last Name" <?php if(isset($clientLastname)){echo "value='$clientLastname'";}  ?> required>
+                <label>Email Address</label><input type="email" name="clientEmail" id="clientEmail"  placeholder="Email Address"<?php if(isset($clientEmail)){echo "value='$clientEmail'";}  ?> required>
                 <label>Password</label>
                                 <p class="password">Must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character.</p>
-                                <input   type="password" id="clientPassword" name="clientPassword"  pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  
+                                <input   type="password" id="clientPassword" name="clientPassword" placeholder="Password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  
                                  required>
 
                 <div>

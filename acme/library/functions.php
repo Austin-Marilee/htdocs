@@ -30,3 +30,9 @@ foreach ($categories as $category) {
 $navList .= '</ul>';
 return $navList;
 }
+
+//Checks Price Pattern
+function checkPrice($invPrice) {
+    $pattern = '/^([1-9][0-9]*|0)(\.[0-9]{2})?$/';
+    return preg_match($pattern, $invPrice);
+}

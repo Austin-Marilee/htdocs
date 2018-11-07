@@ -14,7 +14,10 @@ require_once 'library/functions.php';
 // Get the array of categories
 $categories = getCategories();
 
-$navList = buildNav($categories);
+// Check if the firstname cookie exists, get its value
+if(isset($_COOKIE['firstname'])){
+ $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
+}
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {

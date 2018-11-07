@@ -22,7 +22,7 @@
         </header>
 
         <nav>
-            <?php echo $navList; ?>
+            <?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/navigation.php'; ?> 
         </nav>
 
         <!--main styles-->

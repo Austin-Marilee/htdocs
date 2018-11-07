@@ -22,7 +22,7 @@
         </header>
 
         <nav>
-            <?php echo $navList; ?>
+            <?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/navigation.php'; ?> 
         </nav>
 
         <!--main styles-->
@@ -40,7 +40,7 @@
             </div>
             
             <form  method="post" action="/acme/products/index.php">
-                <label>Category Name</label><input type="text" name="categoryName" id="categoryName"  required>
+                <label>Category Name</label><input type="text" name="categoryName" id="categoryName"  placeholder="Category Name" required>
 
                 <div>
                     <input type="submit" value="Add Category" name="action"  class="submitBtn">

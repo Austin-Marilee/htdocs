@@ -18,9 +18,10 @@ img.logo {
     margin: 15px 30px;
 }
 div.folder {
-    margin: 30px 20px 0 0;
+    margin: 10px 20px 0 0;
     float: right;
     font-size: 1rem;
+    text-align: center;
 }
 div.folder a {
     text-decoration: none;
@@ -29,6 +30,7 @@ div.folder a {
 img.folder {
     padding-right: 5px;
     max-width: 30px;
+    vertical-align: bottom;
 }
 
 /*-------NAVIGATION-------*/
@@ -152,14 +154,11 @@ form {
     margin: 0px 30px;
     max-width: 800px;
 }
-/*NEW HTML5 VALIDATION*/
-label {
- margin: 0 0 5px 5px;
- font-size: 1.4rem;
- padding-bottom: 10px;
 
+label {
+    display: none;
 }
- input {
+input {
     display: block;
     color: #0000ee;
     font-size:1.2em;
@@ -207,7 +206,7 @@ div.newBtn {
 }
 
 div.addBtn {
-        background-color: #808080;
+    background-color: #808080;
     border: none;
     font-family: 'Kalam', cursive;
     padding: 10px;
@@ -218,7 +217,7 @@ div.addBtn {
     margin: 15px 30px 0px 20px;
     text-align: center;
     color: #fff;
-    
+
 }
 
 a  {
@@ -241,26 +240,32 @@ p.password {
     margin: 0;
 }
 
-/*The input that currently has the focus*/
+/* -- INPUT VALIDATION --*/
 input:focus {
     box-shadow: 1px 1px 5px rgba(0,0,0,0.5) inset;
 }
-/*identifies all the required fields*/
 input:required {
     background-position: 4px -61px; /*shows the red star*/
 }
-textarea:required {
-    background-position: 10px -61px; /*shows the red star*/
-}
-/*Validation*/
 input:focus:invalid {
     background-position: 6px -110px; /*shows the yelllow cirle*/
 }
-/*Valid*/
 input:required:valid {
     background-color: #fff;
     background-position: 4px -161px; /*shows the green check*/
 }
+/*--TEXTAREA VALIDATION--*/
+textarea:required {
+    background-position: 10px -30px; /*shows the red star*/
+}
+textarea:required:valid {
+    background-color: #fff;
+
+}
+textarea:focus:invalid {
+    background-position: 6px -220px;  /*shows the green check*/
+}
+
 
 /*----ADD CATEGORY & PRODUCTS PAGES----*/
 fieldset {
@@ -279,29 +284,29 @@ fieldset legend {
 fieldset:last-child {
     border: none;
 }
-
 select.drop-down {
-    color: #222E50;
     font-size:1.2em;
     width: 100%;
-    padding: 3px 3px 3px 20px;
+    padding: 3px 3px 3px 5px;
     margin: 0px 0px 20px 0px;
     max-width: 500px;
     font-family: 'Kalam', cursive;
     border: solid 1px #e8e8e8;
-    background-image: url(../images/site/ico_validation.png);
-    background-repeat: no-repeat;
     border-radius: 5px;
     background-color: #e8e8e8;
-
 }
 select.drop-down:hover {
     cursor:pointer;
 }
-
 textarea {
     height: 100px;
     width: 100%;
-    padding: 10px;
+    padding: 10px 10px 10px 25px;
     font-family: 'Kalam', cursive;
+    background-image: url(../images/site/ico_validation_large.png);
+    background-repeat: no-repeat;
+}
+span#red {
+    color: red;
+    font-size: 2rem;
 }

@@ -23,7 +23,7 @@
         </header>
 
         <nav>
-            <?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/navigation.php'; ?> 
+            <?php include $_SERVER['DOCUMENT_ROOT'] . '../acme/common/navigation.php'; ?> 
         </nav>
 
         <!--main styles-->

@@ -40,12 +40,12 @@ function addProduct($invName, $invDescription, $invImage, $invThumbnail, $invPri
     $stmt->bindValue(':invDescription', $invDescription, PDO::PARAM_STR);
     $stmt->bindValue(':invImage', $invImage, PDO::PARAM_STR);
     $stmt->bindValue(':invThumbnail', $invThumbnail, PDO::PARAM_STR);
-    $stmt->bindValue(':invPrice', $invPrice, PDO::PARAM_INT);
+    $stmt->bindValue(':invPrice', $invPrice, PDO::PARAM_STR);
     $stmt->bindValue(':invStock', $invStock, PDO::PARAM_INT);
     $stmt->bindValue(':invSize', $invSize, PDO::PARAM_INT);
     $stmt->bindValue(':invWeight', $invWeight, PDO::PARAM_INT);
     $stmt->bindValue(':invLocation', $invLocation, PDO::PARAM_STR);
-    $stmt->bindValue(':categoryId', $categoryId, PDO::PARAM_INT);
+    $stmt->bindValue(':categoryId', $categoryId, PDO::PARAM_STR);
     $stmt->bindValue(':invVendor', $invVendor, PDO::PARAM_STR);
     $stmt->bindValue(':invStyle', $invStyle, PDO::PARAM_STR);
     // Use the prepared statement to insert the data

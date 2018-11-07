@@ -21,9 +21,9 @@
             <?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/header.php'; ?> 
         </header>
 
-            <nav>
-                <?php echo $navList; ?>
-            </nav>
+        <nav>
+            <?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/navigation.php'; ?> 
+        </nav>
 
             <!--main styles-->
             <main class="top-layer">  

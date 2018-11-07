@@ -16,9 +16,6 @@ require_once '../model/accounts-model.php';
 // Get the array of categories
 $categories = getCategories();
 
-//Get the Navigation from functions
-$navList = buildNav($categories);
-
 // Get the value from the action name - value pair
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
@@ -43,6 +40,15 @@ switch ($action) {
         $clientEmail = checkEmail($clientEmail);
         $checkPassword = checkPassword($clientPassword);
 
+//Check for existing email address
+        $existingEmail = checkExistingEmail($clientEmail);
+
+        if ($existingEmail) {
+            $message = '<p>This email address already exists in our records. Please login.</p>';
+            include'../view/login.php';
+            exit;
+        }
+
 // Check for missing data
         if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)) {
             $message = '<p class="result">*Please provide information for all empty form fields.</p>';
@@ -50,7 +56,7 @@ switch ($action) {
             exit;
         }
 
- // Hash the checked password
+        // Hash the checked password
         $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
 
 // Send the data to the model
@@ -58,6 +64,7 @@ switch ($action) {
 
 // Check and report the result
         if ($regOutcome === 1) {
+            setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
             $message = "<p class='result'>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
             include '../view/login.php';
             exit;
