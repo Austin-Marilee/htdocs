@@ -1,3 +1,8 @@
+<?php
+    if (!isset($_SESSION['loggedin'])  && $clientLevel < 2) {
+            header('Location: /acme/index.php');
+    }
+    ?>
 <!DOCTYPE html>
 <html lang="en-US">
 

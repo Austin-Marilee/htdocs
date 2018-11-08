@@ -1,4 +1,8 @@
 <?php
+    if (!isset($_SESSION['loggedin'])  && $clientLevel < 2) {
+            header('Location: /acme/index.php');
+    }
+
 $catList = '<select required name="categoryId" id="categoryId" class="drop-down"> ';
 $catList .= '<option value="" disabled selected>Choose a Category</option>';
 
