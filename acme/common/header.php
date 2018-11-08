@@ -8,5 +8,12 @@
     }
     ?>
     <br>
-    <a href="/acme/accounts/index.php?action=login"><img   class="folder" src="/acme/images/site/account.gif" alt="Image of a folder">My Account</a>
+    <?php
+    if ($_SESSION['loggedin'] = TRUE) {
+        echo '<a href="/acme/accounts/index.php?action=logout"><p class="adminBtn">Logout</p></a>';
+    } else {
+        echo '<a href="/acme/accounts/index.php?action=login"><img   class="folder" src="/acme/images/site/account.gif" alt="Image of a folder">My Account</a>';
+    }
+    ?>
+
 </div>

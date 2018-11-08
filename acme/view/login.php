@@ -32,15 +32,17 @@
             <div class="req_password">
 
                 <?php
-                if (isset($message)) {
-                    echo $message;
+                if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
                 }
                 ?>
             </div>
 
-            <form  method="post" action="/acme/accounts/index.php">
+            <form  method="post" action="/acme/accounts/">
                 <label>Email Address</label><input type="email" name="clientEmail" id="clientEmail"  placeholder="Email Address"<?php if (isset($clientEmail)) {
-                    echo "value='$clientEmail'"; } ?>  required>
+                    echo "value='$clientEmail'";
+                }
+                ?>  required>
 
                 <label>Password</label>
                 <p class="password">Must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character.</p>
