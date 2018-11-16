@@ -67,7 +67,7 @@ switch ($action) {
 
 // Check and report the result
         if ($regOutcome === 1) {
-            setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
+            setcookie('clientFirstname', $clientFirstname, strtotime('+1 year'), '/');
             $_SESSION['message'] = "Thanks for registering $clientFirstname. Please use your email and password to login.";
             header('Location: /acme/accounts/?action=login');
             exit;
@@ -107,7 +107,7 @@ switch ($action) {
 // If the hashes don't match create an error
 // and return to the login view
         if (!$hashCheck) {
-            $_SESSION['message'] = '<p class="notice">Please check your password and try again.</p>';
+            $_SESSION['message'] = '<p class="result">Please check your information and try again.</p>';
             include '../view/login.php';
             exit;
         }
@@ -126,7 +126,10 @@ switch ($action) {
         $clientLastname = $_SESSION['clientData']['clientLastname'];
         $clientEmail = $_SESSION['clientData']['clientEmail'];
         $clientLevel = $_SESSION['clientData']['clientLevel'];
+        $clientId = $_SESSION['clientData']['clientId'];
 
+
+        $_SESSION['message'] = '<p class="notice">You have successfully logged in.</p>';
 // Send them to the admin view
         include '../view/admin.php';
         exit;
@@ -142,6 +145,108 @@ switch ($action) {
         exit;
         break;
 
+    case 'acnt':
+                $clientId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+//        $clientId = $_SESSION['clientData']['clientId'];
+        $clientInfo = getClientInfo($clientId);
+        if (count($clientInfo) < 1) {
+            $message = 'Sorry, no client information could be found.';
+        }
+        include '../view/client-update.php';
+        exit;
+        break;
+
+    case 'updateClient':
+        // Filter and store the data
+
+        $clientFirstname = filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_STRING);
+        $clientLastname = filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_STRING);
+        $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_STRING);
+        $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+        $clientEmail = checkEmail($clientEmail);
+
+        //checks to see is email is the same as session and then checks it
+        //if it is in the database
+        if($clientEmail === $_SESSION['clientData']['clientEmail']) {
+                    $existingEmail = checkExistingEmail($clientEmail);
+            if ($existingEmail) {
+                $message = '<p>This email address already exists in our records. Please try again.</p>';
+                include'../view/client-update.php';
+                exit;
+            }
+        }
+
+
+        // Check for missing data
+        if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)) {
+            $message = '<p class="result">*Please provide information for all empty form fields.</p>';
+            include '../view/client-update.php';
+            exit;
+        }
+
+// Send the data to the model
+        $updateResult = updateClient($clientId, $clientFirstname, $clientLastname, $clientEmail);
+
+        // Check and report the result
+        if ($updateResult != 1) {
+            $message = "<p class='result'>Sorry, but updating your account  was unsucessful.</p>";
+            include '../view/client-update.php';
+            exit;
+        }
+        
+        // Query the client data based on the email address
+        $clientData = getClientInfo($clientId);
+        // A valid user exists, log them in
+        $_SESSION['loggedin'] = TRUE;
+
+// Store the array into the session
+        $_SESSION['clientData'] = $clientData;
+        $clientFirstname = $_SESSION['clientData']['clientFirstname'];
+        $clientLastname = $_SESSION['clientData']['clientLastname'];
+        $clientEmail = $_SESSION['clientData']['clientEmail'];
+        $clientLevel = $_SESSION['clientData']['clientLevel'];
+        $clientId = $_SESSION['clientData']['clientId'];
+
+
+        $_SESSION['message'] = '<p class="notice">You have updated your account information.</p>';
+// Send them to the admin view
+        include '../view/admin.php';
+        exit;
+        break;
+
+
+    case 'updatePass':
+        // Filter and store the data
+        $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING);
+        $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+
+        // Check for missing data
+        if (empty($checkPassword)) {
+            $message = '<p class="result">*Please match the requested format.</p>';
+            include '../view/client-update.php';
+            exit;
+        }
+
+        // Hash the checked password
+        $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
+
+// Send the data to the model
+        $updateResult = updatePass($hashedPassword, $clientId);
+
+// Check and report the result
+        if ($updateResult) {
+            $message = "<p class='result'>Congratulations, your password  was successfully updated.</p>";
+            $_SESSION['message'] = $message;
+            include '../view/admin.php';
+            exit;
+        } else {
+            $message = "<p class='result'>Sorry, but updating your password  was unsucessful.</p>";
+            include '../view/client-update.php';
+            exit;
+        }
+        break;
+
     default:
+
         include '../view/admin.php';
 }

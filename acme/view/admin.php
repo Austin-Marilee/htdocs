@@ -34,18 +34,30 @@ if (!$_SESSION['loggedin']) {
         <main class="top-layer">  
             <h1>
                 <?php
-                echo $clientFirstname . " " . $clientLastname;
+                echo $_SESSION['clientData']['clientFirstname'] . " " . $_SESSION['clientData']['clientLastname'];
                 ?>
             </h1>
+            <h3>   
+                <?php
+                if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
+                }
+                ?>
+            </h3>
             <ul class="admin-user">
-                <li>First name: <?php echo $clientFirstname; ?></li>
-                <li>Last name: <?php echo $clientLastname; ?></li>
-                <li>Email: <?php echo $clientEmail; ?></li>
-                <li>User Level: <?php echo $clientLevel; ?></li>
+                <li>First name: <?php echo $_SESSION['clientData']['clientFirstname']; ?></li>
+                <li>Last name: <?php echo $_SESSION['clientData']['clientLastname']; ?></li>
+                <li>Email: <?php echo $_SESSION['clientData']['clientEmail']; ?></li>
+                
+                
             </ul>
+            <a href="/acme/accounts/index.php?action=acnt&id=<?php echo $_SESSION['clientData']['clientId']; ?>"><div class="adminBtn">Update Account</div></a>
+
             <?php
-            if ($clientLevel > 1) {
-                echo '<a href="/acme/products/index.php"><p class="adminBtn">Product Management</p></a>';
+            if ($_SESSION['clientData']['clientLevel'] > 1) {
+                echo '<div class="admin">
+                <h3>Administration</h3>
+                <p>Click here to manage products.</p><a href="/acme/products/index.php"><p class="addBtn">Product Management</p></a>';
             }
             ?>
         </main>
