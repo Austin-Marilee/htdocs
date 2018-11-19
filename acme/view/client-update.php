@@ -2,7 +2,6 @@
 if (!$_SESSION['loggedin']) {
     header('Location: /acme/');
 }
-unset($_SESSION['message']);
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -34,41 +33,29 @@ unset($_SESSION['message']);
         <!--main styles-->
         <main class="top-layer">
             <br>
-            <div class="req_password">
-                <?php
-                if (isset($message)) {
-                    echo $message;
+
+            <h1>Update Account</h1>
+                            <?php
+                if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
                 }
                 ?>
-            </div>
-            <h1>Update Account</h1>
             <form  method="post" action="/acme/accounts/">
-                <label>First Name</label><input type="text" name="clientFirstname" id="clientFirstname" placeholder="First Name"
-                <?php
-                //Version from Darlene
-
+                <label>First Name</label><input type="text" name="clientFirstname" id="clientFirstname" placeholder="First Name" <?php
                 if (isset($clientFirstname)) {
                     echo "value='$clientFirstname'";
-                } elseif (isset($_SESSION['clientData']['clientFirstname'])) {
-                    echo "value='" . $_SESSION['clientData']['clientFirstname'] . "'";
+                } elseif (isset($clientInfo['clientFirstname'])) {
+                    echo "value='$clientInfo[clientFirstname]'";
                 }
+                ?> required>
 
-                //Version from Tutor
-//                if (isset($clientFirstname)) {
-//                    echo "value='$clientFirstname'";
-//                } elseif (isset($clientInfo['clientFirstname'])) {
-//                    echo "value='$clientInfo[clientFirstname]'";
-//                }
-                ?>  required>
-
-
-                <label>Last Name</label><input type="text" name="clientLastname" id="clientLastname" placeholder="Last Name"<?php
+                <label>Last Name</label><input type="text" name="clientLastname" id="clientLastname" placeholder="Last Name" <?php
                 if (isset($clientLastname)) {
                     echo "value='$clientLastname'";
                 } elseif (isset($clientInfo['clientLastname'])) {
                     echo "value='$clientInfo[clientLastname]'";
                 }
-                ?>  required>
+                ?> required>
 
                 <label>Email</label><input type="text" name="clientEmail" id="clientEmail" placeholder="Email"                <?php
                 if (isset($clientEmail)) {
@@ -76,7 +63,7 @@ unset($_SESSION['message']);
                 } elseif (isset($clientInfo['clientEmail'])) {
                     echo "value='$clientInfo[clientEmail]'";
                 }
-                ?>  required>
+                ?> required>
 
                 <div>
                     <input type="submit" value="Update Account" class="submitBtn">
@@ -94,7 +81,11 @@ unset($_SESSION['message']);
             </form>
 
             <h1>Update Password</h1>
-
+                <?php
+                if (isset($message)) {
+                    echo $message;
+                }
+                ?>
             <form  method="post" action="/acme/accounts/">
                 <label>Password</label>
                 <p class="password">This will change your password.  Passwords, must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character.</p>
@@ -126,4 +117,3 @@ unset($_SESSION['message']);
 
     </body>
 </html>
-

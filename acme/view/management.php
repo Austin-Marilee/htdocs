@@ -6,6 +6,7 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
 if (isset($_SESSION['message'])) {
     $message = $_SESSION['message'];
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en-US">

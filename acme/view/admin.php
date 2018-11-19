@@ -2,6 +2,9 @@
 if (!$_SESSION['loggedin']) {
     header('Location: /acme/');
 }
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -37,13 +40,13 @@ if (!$_SESSION['loggedin']) {
                 echo $_SESSION['clientData']['clientFirstname'] . " " . $_SESSION['clientData']['clientLastname'];
                 ?>
             </h1>
-            <h3>   
+            <div>   
                 <?php
                 if (isset($_SESSION['message'])) {
                     echo $_SESSION['message'];
                 }
                 ?>
-            </h3>
+            </div>
             <ul class="admin-user">
                 <li>First name: <?php echo $_SESSION['clientData']['clientFirstname']; ?></li>
                 <li>Last name: <?php echo $_SESSION['clientData']['clientLastname']; ?></li>
@@ -57,7 +60,7 @@ if (!$_SESSION['loggedin']) {
             if ($_SESSION['clientData']['clientLevel'] > 1) {
                 echo '<div class="admin">
                 <h3>Administration</h3>
-                <p>Click here to manage products.</p><a href="/acme/products/index.php"><p class="addBtn">Product Management</p></a>';
+                <p>Click here to manage products.</p><a href="/acme/products/index.php"><p class="addBtn">Product Management</p></a></div>';
             }
             ?>
         </main>
@@ -73,3 +76,5 @@ if (!$_SESSION['loggedin']) {
 
     </body>
 </html>
+
+<?php unset($_SESSION['message']); ?>

@@ -179,8 +179,19 @@ switch ($action) {
             exit;
         }
         break;
-
-    default:
+        
+case 'category':
+ $categoryName = filter_input(INPUT_GET, 'categoryName', FILTER_SANITIZE_STRING);
+ $products = getProductsByCategory($categoryName);
+ if(!count($products)){
+  $message = "<p class='notice'>Sorry, no $categoryName products could be found.</p>";
+ } else {
+  $prodDisplay = buildProductsDisplay($products);
+ }
+ include '../view/category.php';
+ break;
+        
+   default:
         $products = getProductBasics();
         if (count($products) > 0) {
             $prodList = '<table>';

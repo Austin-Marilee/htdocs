@@ -57,32 +57,39 @@ function getClient($clientEmail) {
     return $clientData;
 }
 
-////Get client  information from dabatase for update process
-//function getClientBasics() {
-//    $db = acmeConnect();
-//    $sql = 'SELECT clientFirstname, clientId FROM inventory';
-//    $stmt = $db->prepare($sql);
-//    $stmt->execute();
-//    $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//    $stmt->closeCursor();
-//    return $clients;
-//}
-// Get client information by clientId
+// Get client data based on an ID
 function getClientInfo($clientId) {
     $db = acmeConnect();
-    $sql = 'SELECT * FROM clients WHERE clientId = :clientId';
+    $sql = 'SELECT clientId, clientFirstname, clientLastname, clientEmail, clientLevel, clientPassword 
+         FROM clients
+         WHERE clientId = :clientId';
     $stmt = $db->prepare($sql);
-    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+   $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
     $stmt->execute();
     $clientInfo = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $clientInfo;
 }
 
+
+//// Get client information by clientId
+//function getClientInfo($clientId) {
+//    $db = acmeConnect();
+//    $sql = 'SELECT * FROM clients WHERE clientId = :clientId';
+//    $stmt = $db->prepare($sql);
+//    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+//    $stmt->execute();
+//    $clientInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+//    $stmt->closeCursor();
+//    return $clientInfo;
+//}
+
 // Update Client Account info  in the database
+// Send the data to the model
 function updateClient($clientId, $clientFirstname, $clientLastname, $clientEmail) {
+//    echo $clientFirstname.' '.$clientLastname.' '.$clientEmail;
     $db = acmeConnect();
-    $sql = 'UPDATE clients SET clientFirstname = :clientFirstname = clientLastname = :clientLastname, clientEmail = :clientEmail WHERE clientId = :clientId';
+    $sql = 'UPDATE clients SET clientFirstname = :clientFirstname,  clientLastname = :clientLastname, clientEmail = :clientEmail WHERE clientId = :clientId';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
     $stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR);
@@ -95,12 +102,12 @@ function updateClient($clientId, $clientFirstname, $clientLastname, $clientEmail
 }
 
 // Update Password
-function updatePass($clientId, $clientPassword) {
+function updatePass($hashedPassword, $clientId){
     $db = acmeConnect();
     $sql = 'UPDATE clients SET clientPassword = :clientPassword  WHERE clientId = :clientId';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
-    $stmt->bindValue(':clientPassword', $clientPassword, PDO::PARAM_STR);
+    $stmt->bindValue(':clientPassword', $hashedPassword, PDO::PARAM_STR);
     $stmt->execute();
     $rowsChanged = $stmt->rowCount();
     $stmt->closeCursor();
