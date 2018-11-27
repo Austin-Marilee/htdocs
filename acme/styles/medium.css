@@ -1,4 +1,4 @@
-@media only screen and (min-width: 37.5em) {
+@media only screen and (min-width: 45em) {
     /* Only CSS rules that need to be changed to meet the layout needs from small to medium go in here */
     
         /*-----NAVIGATION-----*/
@@ -34,5 +34,20 @@ section.reviews {float: right;}
 ul.reviews {font-size: 1.2rem;}
 figcaption {font-size: 1.2rem;}
 
+/*--PRODUCT DISPLAY--*/
+ul#prod-display {
+grid-template-columns: repeat(2, 1fr);
+}
+/*--DETAILS--*/
+section#prod-details img {
+    float: left;
+    margin-bottom: 200px;
+}
 
+section#prod-details {
+        margin-bottom: 300px;
+}
+section#prod-details p {
+    max-width: 800px;
+}
 }

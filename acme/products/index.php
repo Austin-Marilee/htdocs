@@ -95,6 +95,7 @@ switch ($action) {
     case 'productView':
         include '../view/product.php';
         break;
+    
     case 'categoryView':
         include '../view/category.php';
         break;
@@ -179,19 +180,30 @@ switch ($action) {
             exit;
         }
         break;
+
+    case 'category':
+        $categoryName = filter_input(INPUT_GET, 'categoryName', FILTER_SANITIZE_STRING);
+        $products = getProductsByCategory($categoryName);
+        if (!count($products)) {
+            $message = "<p class='notice'>Sorry, no $categoryName products could be found.</p>";
+        } else {
+            $prodDisplay = buildProductsDisplay($products);
+        }
+        include '../view/display.php';
+        break;
+
+    case 'product':
+        $invName = filter_input(INPUT_GET, 'invName', FILTER_SANITIZE_STRING);
+        $products = getProductDisplay($invName);
+        if (!count($products)) {
+            $message = "<p class='notice'>Sorry, no $invName could be found.</p>";
+        } else {
+            $prodDisplay = buildProductsDetails($products);
+        }
+        include '../view/product-detail.php';
+        break;
         
-case 'category':
- $categoryName = filter_input(INPUT_GET, 'categoryName', FILTER_SANITIZE_STRING);
- $products = getProductsByCategory($categoryName);
- if(!count($products)){
-  $message = "<p class='notice'>Sorry, no $categoryName products could be found.</p>";
- } else {
-  $prodDisplay = buildProductsDisplay($products);
- }
- include '../view/category.php';
- break;
-        
-   default:
+    default:
         $products = getProductBasics();
         if (count($products) > 0) {
             $prodList = '<table>';

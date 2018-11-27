@@ -31,6 +31,7 @@ switch ($action) {
     case 'template':
         include 'template/template.php';
         break;
+    
     default:
         include 'view/home.php';
 }

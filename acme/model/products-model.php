@@ -118,3 +118,15 @@ function getProductsByCategory($categoryName) {
     $stmt->closeCursor();
     return $products;
 }
+
+//Get a list of products details based on the product name (uses a SQL subquery)
+function getProductDisplay($invName){
+    $db = acmeConnect();
+    $sql = 'SELECT * FROM inventory WHERE invId IN (SELECT invId FROM inventory WHERE invName = :invName)';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':invName', $invName, PDO::PARAM_STR);
+    $stmt->execute();
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $products;
+}

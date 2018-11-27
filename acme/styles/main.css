@@ -111,23 +111,26 @@ ul.rocket_ad img {
 }
 
 /*-----------REVIEWS & RECIPES-----------*/
-h3 { margin: 30px 0px 0px 30px;}
+h3 { margin: 30px 0px 20px 30px;}
 
 ul.reviews { 
     margin: 5px 20px; 
-    font-size: .8rem;
+    font-size: 1rem;
 }
 div.recipeGallery {
     display: grid;
-    grid-template-columns: repeat(2, 50%);
-    grid-gap: 5px;
-    text-align: center;
-    margin: 5px 50px 5px 20px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    text-align: left;
+    margin: 5px 50px 5px 35px;
 
+}
+div.recipeGallery img {
+    width: 150px;
 }
 figure.gallery {
     margin: 0px;
-    background-color: #808080;
+
 }
 figure  p  {
     background-color: #fff;
@@ -136,7 +139,7 @@ figure  p  {
 figcaption {
     background-color: #fff;
     padding: 10px 0 20px 0;
-    font-size: .8rem;
+    font-size: 1.2rem;
 }
 
 /*--------FOOTER------------*/
@@ -375,4 +378,50 @@ table td, table th {
 }
 tr:nth-child(even) {
     background-color: #EAE8FF;
+}
+
+/*---Product Display--*/
+ul#prod-display {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    list-style-type: none;
+    text-align: center;
+    padding: 0px;
+}
+ul#prod-display li {
+    border: 1px solid #e8e8e8;
+    margin: 40px;
+    padding: 15px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+ul#prod-display  img {
+    max-width: 200px;
+    margin: auto;
+}
+ul#prod-display span {
+    color: #d22226;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/*--DETAILS--*/
+section#prod-details img {
+    margin: 0 30px 30px 30px;
+    max-height: 400px;
+}
+section#prod-details ul {
+    list-style-type: none;
+    font-size: 1.2rem;
+    padding-left: 30px;
+}
+section#prod-details span {
+    display: block;
+        color: #d22226;
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin: 30px 0 0 30px;
+}
+section#prod-details p {
+    font-size: 1.2rem;
+    margin: 0 30px;
 }

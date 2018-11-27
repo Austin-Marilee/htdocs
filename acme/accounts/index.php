@@ -197,7 +197,6 @@ switch ($action) {
         exit;
         break;
 
-
     case 'updatePass':
         // Filter and store the data
         $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING);

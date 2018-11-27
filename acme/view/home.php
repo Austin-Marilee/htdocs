@@ -37,7 +37,7 @@
                     <li>Quick lighting fuse</li>
                     <li>NHTSA approved seat belts</li>
                     <li>Mobile launch stand included</li>
-                    <li><a href="/acme/cart/"><img id="actionbtn" alt="Add to cart button" src="images/site/iwantit.gif"></a></li>
+                    <li><a href="/acme/products/index.php?action=product"><img id="actionbtn" alt="Add to cart button" src="images/site/iwantit.gif"></a></li>
                 </ul>         
             </section>
 

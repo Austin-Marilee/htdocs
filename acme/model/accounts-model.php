@@ -71,19 +71,6 @@ function getClientInfo($clientId) {
     return $clientInfo;
 }
 
-
-//// Get client information by clientId
-//function getClientInfo($clientId) {
-//    $db = acmeConnect();
-//    $sql = 'SELECT * FROM clients WHERE clientId = :clientId';
-//    $stmt = $db->prepare($sql);
-//    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
-//    $stmt->execute();
-//    $clientInfo = $stmt->fetch(PDO::FETCH_ASSOC);
-//    $stmt->closeCursor();
-//    return $clientInfo;
-//}
-
 // Update Client Account info  in the database
 // Send the data to the model
 function updateClient($clientId, $clientFirstname, $clientLastname, $clientEmail) {
