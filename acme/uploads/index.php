@@ -16,13 +16,14 @@ if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 }
 
-$navList = buildNav;
+// Get the array of categories
+$categories = getCategories();
 
 /* * ****************************************************
  * Variables for use with the Image Upload Functionality
  * **************************************************** */
 // directory name where uploaded images are stored
-$image_dir = '/acme/uploads/images';
+$image_dir = '/acme/images/products';
 // The path is the full path from the server root
 $image_dir_path = $_SERVER['DOCUMENT_ROOT'] . $image_dir;
 
@@ -38,9 +39,9 @@ switch ($action) {
         $imageCheck = checkExistingImage($imgName);
 
         if ($imageCheck) {
-            $message = '<p class="result">An image by that name already exists.</p>';
+            $message = '<p class="result2">An image by that name already exists.</p>';
         } elseif (empty($invId) || empty($imgName)) {
-            $message = '<p class="result">You must select a product and image file for the product.</p>';
+            $message = '<p class="result2">You must select a product and image file for the product.</p>';
         } else {
             // Upload the image, store the returned path to the file
             $imgPath = uploadFile('file1');
@@ -50,9 +51,9 @@ switch ($action) {
 
             // Set a message based on the insert result
             if ($result) {
-                $message = '<p class="result">The upload succeeded.</p>';
+                $message = '<p class="result2">The upload succeeded.</p>';
             } else {
-                $message = '<p class="result">Sorry, the upload failed.</p>';
+                $message = '<p class="resul2t">Sorry, the upload failed.</p>';
             }
         }
 
@@ -86,9 +87,9 @@ switch ($action) {
 
 // Set a message based on the delete result
         if ($remove) {
-            $message = "<p class='result'>$filename was successfully deleted.</p>";
+            $message = "<p class='result2'>$filename was successfully deleted.</p>";
         } else {
-            $message = "<p class='result'>$filename was NOT deleted.</p>";
+            $message = "<p class='result2'>$filename was NOT deleted.</p>";
         }
 
 // Store message to session
@@ -108,7 +109,7 @@ switch ($action) {
         if (count($imageArray)) {
             $imageDisplay = buildImageDisplay($imageArray);
         } else {
-            $imageDisplay = '<p class="notice">Sorry, no images could be found.</p>';
+            $imageDisplay = '<p class="result2">Sorry, no images could be found.</p>';
         }
 
 // Get inventory information from database

@@ -9,9 +9,11 @@
             <file>file:/C:/xampp/htdocs/acme/view/admin.php</file>
             <file>file:/C:/xampp/htdocs/acme/view/product.php</file>
             <file>file:/C:/xampp/htdocs/acme/library/functions.php</file>
+            <file>file:/C:/xampp/htdocs/acme/library/connections.php</file>
             <file>file:/C:/xampp/htdocs/acme/model/accounts-model.php</file>
             <file>file:/C:/xampp/htdocs/acme/common/footer.php</file>
             <file>file:/C:/xampp/htdocs/acme/view/home.php</file>
+            <file>file:/C:/xampp/htdocs/acme/view/image-admin.php</file>
             <file>file:/C:/xampp/htdocs/acme/accounts/index.php</file>
             <file>file:/C:/xampp/htdocs/acme/styles/large.css</file>
             <file>file:/C:/xampp/htdocs/acme/common/navigation.php</file>
@@ -19,11 +21,15 @@
             <file>file:/C:/xampp/htdocs/acme/products/index.php</file>
             <file>file:/C:/xampp/htdocs/acme/view/registration.php</file>
             <file>file:/C:/xampp/htdocs/acme/model/acme-model.php</file>
+            <file>file:/C:/xampp/htdocs/acme/scripts/fileupload.js</file>
             <file>file:/C:/xampp/htdocs/acme/view/login.php</file>
             <file>file:/C:/xampp/htdocs/acme/view/client-update.php</file>
             <file>file:/C:/xampp/htdocs/acme/template/template.php</file>
             <file>file:/C:/xampp/htdocs/acme/view/product-detail.php</file>
             <file>file:/C:/xampp/htdocs/acme/view/prod-update.php</file>
+            <file>file:/C:/xampp/htdocs/acme/model/uploads-model.php</file>
+            <file>file:/C:/xampp/htdocs/acme/images/products/anvil.png</file>
+            <file>file:/C:/xampp/htdocs/acme/uploads/index.php</file>
             <file>file:/C:/xampp/htdocs/acme/index.php</file>
             <file>file:/C:/xampp/htdocs/acme/view/category.php</file>
             <file>file:/C:/xampp/htdocs/acme/common/header.php</file>

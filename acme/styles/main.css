@@ -74,7 +74,7 @@ nav ul.hide {display: none;}
 h1 {
     margin: 0px;
     font-family: 'Kalam', cursive;
-    font-size: 1.5rem;
+
     padding: 20px 20px 10px 30px;
 }
 main {
@@ -248,8 +248,8 @@ div.req_password {
     padding: 0px 30px 0px 30px;
     font-size: 1rem;
     max-width: 575px;
-        color: #de2226;
-        margin-bottom: 10px;
+    color: #de2226;
+    margin-bottom: 10px;
 }
 p.password {
     font-size: .9rem;
@@ -282,7 +282,7 @@ input:required:valid {
 }
 /*--TEXTAREA VALIDATION--*/
 textarea:required {
-        background-image: url(../images/site/ico_validation_large.png);
+    background-image: url(../images/site/ico_validation_large.png);
     background-repeat: no-repeat;
     background-position: 10px -30px; /*shows the red star*/
 }
@@ -312,7 +312,7 @@ fieldset legend {
 fieldset:last-child {
     border: none;
 }
-select.drop-down {
+.drop-down {
     font-size:1.2em;
     width: 100%;
     padding: 3px 3px 3px 5px;
@@ -344,7 +344,7 @@ span#red {
     margin-left: 20px;
 }
 div.admin {
-   margin-top: 40px;
+    margin-top: 40px;
 }
 h3 {
     font-size: 1.5rem;
@@ -392,12 +392,9 @@ ul#prod-display li {
     border: 1px solid #e8e8e8;
     margin: 40px;
     padding: 15px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-ul#prod-display  img {
-    max-width: 200px;
-    margin: auto;
-}
+
 ul#prod-display span {
     color: #d22226;
     font-weight: 600;
@@ -407,7 +404,6 @@ ul#prod-display span {
 /*--DETAILS--*/
 section#prod-details img {
     margin: 0 30px 30px 30px;
-    max-height: 400px;
 }
 section#prod-details ul {
     list-style-type: none;
@@ -416,7 +412,7 @@ section#prod-details ul {
 }
 section#prod-details span {
     display: block;
-        color: #d22226;
+    color: #d22226;
     font-weight: 600;
     font-size: 1.8rem;
     margin: 30px 0 0 30px;
@@ -425,3 +421,46 @@ section#prod-details p {
     font-size: 1.2rem;
     margin: 0 30px;
 }
+
+/*IMAGE MANAGEMENT*/
+
+p.reg-message {
+    margin: 0 0 0 30px;
+}
+ul#image-display {
+    list-style-type: none;
+}
+
+h2.add-image {
+    margin: 35px 0 0 30px;
+}
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputfile + label {
+    font-size:1.2em;
+    cursor: pointer; /* "hand" cursor */
+     display: block;
+    padding: 10px 0px 10px 10px;
+    margin: 0px 0px 10px 0px;
+    max-width: 500px;
+    font-family: 'Kalam', cursive;
+    border: solid 1px #e8e8e8;
+    background-image: url(../images/site/ico_validation.png);
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    background-color: #e8e8e8;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: #0000ee;
+    color: white;
+}
+
+

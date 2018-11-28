@@ -45,7 +45,6 @@ $catList .= '</select>';
         <!--main styles-->
         <main class="top-layer">  
             <h1>Add a Product</h1>
-            <div class="req_password"> Please complete the form to add a product. </div>
 
             <div class="req_password">            
                 <?php

@@ -58,7 +58,8 @@ switch ($action) {
 // Check and report the result
         if ($regOutcome === 1) {
             $message = "<p class='result'>You successfully added $invName to the database.</p>";
-            include '../view/product.php';
+                        $_SESSION['message'] = $message;
+            header('location: /acme/products/');
             exit;
         } else {
             $message = "<p class='result'>Sorry, but adding the product was unsucessful.</p>";
@@ -193,12 +194,12 @@ switch ($action) {
         break;
 
     case 'product':
-        $invName = filter_input(INPUT_GET, 'invName', FILTER_SANITIZE_STRING);
-        $products = getProductDisplay($invName);
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_STRING);
+        $products = getProductInfo($invId);
         if (!count($products)) {
             $message = "<p class='notice'>Sorry, no $invName could be found.</p>";
         } else {
-            $prodDisplay = buildProductsDetails($products);
+            $prodDetailDisplay = buildProductsDetails($products);
         }
         include '../view/product-detail.php';
         break;
