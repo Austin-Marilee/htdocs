@@ -29,6 +29,12 @@
         <main class="top-layer">  
 
             <h1>Welcome to Acme!</h1>
+          
+                        <?php
+            if (isset($featuredDisplay)) {
+                echo $featuredDisplay;
+            }
+            ?>
 
             <section class="banner">
                 <img class="rocket" src="images/site/rocketfeature.jpg" alt="Roadrunner on a Rocket">
@@ -40,7 +46,7 @@
                     <li><a href="/acme/products/index.php?action=product"><img id="actionbtn" alt="Add to cart button" src="images/site/iwantit.gif"></a></li>
                 </ul>         
             </section>
-
+            <section class="recipies_reviews">
             <section class="reviews">
                 <h3>Acme Rocket Reviews</h3>
                 <ul class="reviews">
@@ -76,7 +82,7 @@
                     </figure>
                 </div>                              
             </section>   
-
+            </section>
         </main>
 
         <!--footer-->

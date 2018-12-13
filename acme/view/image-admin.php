@@ -1,7 +1,7 @@
 <?php
-if (!$_SESSION['loggedin']) {
-    header('Location: /acme/');
-}
+//if (!$_SESSION['loggedin']) {
+//    header('Location: /acme/');
+//}
 if (isset($_SESSION['message'])) {
     $message = $_SESSION['message'];
 }

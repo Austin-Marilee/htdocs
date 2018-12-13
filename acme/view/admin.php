@@ -51,16 +51,30 @@ if (isset($_SESSION['message'])) {
                 <li>First name: <?php echo $_SESSION['clientData']['clientFirstname']; ?></li>
                 <li>Last name: <?php echo $_SESSION['clientData']['clientLastname']; ?></li>
                 <li>Email: <?php echo $_SESSION['clientData']['clientEmail']; ?></li>
-                
-                
+
+
             </ul>
             <a href="/acme/accounts/index.php?action=acnt&id=<?php echo $_SESSION['clientData']['clientId']; ?>"><div class="adminBtn">Update Account</div></a>
 
+            <!--Displays the list of reviews-->
             <?php
             if ($_SESSION['clientData']['clientLevel'] > 1) {
-                echo '<div class="admin">
+                echo '<br><br> <hr><div class="admin">
                 <h3>Administration</h3>
-                <p>Click here to manage products.</p><a href="/acme/products/index.php"><p class="addBtn">Product Management</p></a></div>';
+                <p>Click here to manage products.</p><a href="/acme/products/index.php"><p class="addBtn">Product Management</p></a><br>
+                <a href="/acme/uploads/"><p class="addBtn">Image Management</p></a></div>';
+            }
+            ?>
+
+            <?php
+            if (isset($reviewList)) {
+                echo ' <br><br> <hr><h3>Manage Reviews</h3>';
+                                                if (isset($_SESSION['message2'])) {
+                    echo $_SESSION['message2'];
+                }
+ echo $reviewList;
+            } else {
+                echo '<br><hr><p class="result2">Please  leave a product review. We would love to hear from you.</p>';
             }
             ?>
         </main>
@@ -78,3 +92,4 @@ if (isset($_SESSION['message'])) {
 </html>
 
 <?php unset($_SESSION['message']); ?>
+<?php unset($_SESSION['message2']); ?>

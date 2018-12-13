@@ -15,9 +15,15 @@ require_once '../library/functions.php';
 require_once '../model/acme-model.php';
 // Get the accounts model
 require_once '../model/accounts-model.php';
+require_once '../model/reviews-model.php';
+
 
 // Get the array of categories
 $categories = getCategories();
+
+if (isset($_COOKIE['firstname'])) {
+    $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
+}
 
 // Get the value from the action name - value pair
 $action = filter_input(INPUT_POST, 'action');
@@ -43,22 +49,17 @@ switch ($action) {
         $clientEmail = checkEmail($clientEmail);
         $checkPassword = checkPassword($clientPassword);
 
-//Check for existing email address
         $existingEmail = checkExistingEmail($clientEmail);
-
         if ($existingEmail) {
             $message = '<p>This email address already exists in our records. Please login.</p>';
             include'../view/login.php';
             exit;
         }
-
-// Check for missing data
-        if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)) {
+       if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)) {
             $message = '<p class="result">*Please provide information for all empty form fields.</p>';
             include '../view/registration.php';
             exit;
         }
-
         // Hash the checked password
         $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
 
@@ -67,13 +68,14 @@ switch ($action) {
 
 // Check and report the result
         if ($regOutcome === 1) {
-            setcookie('clientFirstname', $clientFirstname, strtotime('+1 year'), '/');
-            $_SESSION['message'] = "Thanks for registering $clientFirstname. Please use your email and password to login.";
-            header('Location: /acme/accounts/?action=login');
+            $_SESSION['message'] = "<p>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
+            setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
+            include '../view/login.php';
+        
             exit;
         } else {
             $message = "<p class='result'>*Sorry $clientFirstname, but the registration failed. Please try again.</p>";
-            include '../view/registration.php';
+            include '../view/login.php';
             exit;
         }
         break;
@@ -84,6 +86,8 @@ switch ($action) {
 
     case 'login-user':
 ///Filter and store the data
+        $clientFirstname = filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_STRING);
+        //Deletes the firstname cookie when a client logs in.
         $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
         $clientEmail = checkEmail($clientEmail);
         $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING);
@@ -94,6 +98,12 @@ switch ($action) {
             $_SESSION['message'] = '<p class="result">*Please provide information for all empty form fields.</p>';
             include '../view/login.php';
             exit;
+
+            if (isset($reviewList)) {
+                echo $reviewList;
+            } else {
+                echo '<p class="result2">We would  love to hear from you. Leave a review for your favorite product.</p>';
+            }
         }
 
         // A valid password exists, proceed with the login process
@@ -128,11 +138,10 @@ switch ($action) {
         $clientLevel = $_SESSION['clientData']['clientLevel'];
         $clientId = $_SESSION['clientData']['clientId'];
 
-
         $_SESSION['message'] = '<p class="result2">You have successfully logged in.</p>';
+        setcookie('firstname', $clientFirstname, strtotime('-1 year'), '/');
 // Send them to the admin view
-        include '../view/admin.php';
-        exit;
+        header('Location: /acme/accounts/');
 
         break;
 
@@ -141,6 +150,7 @@ switch ($action) {
         session_unset();
 // destroy the session 
         session_destroy();
+        setcookie('firstname', $clientFirstname, strtotime('-1 year'), '/');
         header('Location: /acme/index.php');
         exit;
         break;
@@ -165,14 +175,14 @@ switch ($action) {
         $clientEmail = checkEmail($clientEmail);
 
 //Check for email change
-  if ($clientEmail != $_SESSION['clientData']['clientEmail']) {
-           $existingEmail = checkExistingEmail($clientEmail);
-           if($existingEmail) {
-               $_SESSION['message']  = '<p class="result2 notice">This email address already exists in our records. Please try again.</p>';
-               include '../view/client-update.php';
-               exit; 
-           }
-       }
+        if ($clientEmail != $_SESSION['clientData']['clientEmail']) {
+            $existingEmail = checkExistingEmail($clientEmail);
+            if ($existingEmail) {
+                $_SESSION['message'] = '<p class="result2 notice">This email address already exists in our records. Please try again.</p>';
+                include '../view/client-update.php';
+                exit;
+            }
+        }
 
         if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)) {
             $_SESSION['message'] = '<p class="result2">*Please provide information for all empty form fields.</p>';
@@ -225,7 +235,36 @@ switch ($action) {
         }
         break;
 
-    default:
+    case'admin':
+        if (isset($_SESSION['loggedin'])) {
+            header('Location: /acme/accounts/');
+        } else {
+            header('Location: /acme/index.php');
+        }
+        break;
 
+    default:
+        $clientId = $_SESSION['clientData']['clientId'];
+        $reviewArray = getReviewInfo($clientId);
+         if (count($reviewArray) > 0) {
+        $reviewList = '<table>';
+        $reviewList .= '<thead>';
+        $reviewList .= '<tr><th>Date</th><th>Reviews</th><td>&nbsp;</td></tr>';
+        $reviewList .= '</thead><tbody>';
+        foreach ($reviewArray as $review) {
+            $madeDate = $review['reviewDate'];
+            $stringDate = strtotime($madeDate);
+            $displayDate = date('m.d.y', ($stringDate));
+            $reviewList .= "<tr><td>$displayDate</td>";
+            $reviewList .= "<td>$review[reviewText]</td>";
+            $reviewList .= "<td><a href='/acme/reviews?action=editReview&id=$review[reviewId]' title='Click to modify'>Edit</a></td>";
+            $reviewList .= "<td><a href='/acme/reviews?action=deleteView&id=$review[reviewId]' title='Click to delete'>Delete</a></td></tr>";
+        }
+        $reviewList .= '</tbody></table>';
+
+         }else {
+             $message = "<hr><br><p class='result'>Please enter  a review on our product pages. We would love to hear from you.</p>";
+         }
         include '../view/admin.php';
 }
+

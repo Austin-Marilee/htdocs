@@ -72,9 +72,7 @@ function getClientInfo($clientId) {
 }
 
 // Update Client Account info  in the database
-// Send the data to the model
 function updateClient($clientId, $clientFirstname, $clientLastname, $clientEmail) {
-//    echo $clientFirstname.' '.$clientLastname.' '.$clientEmail;
     $db = acmeConnect();
     $sql = 'UPDATE clients SET clientFirstname = :clientFirstname,  clientLastname = :clientLastname, clientEmail = :clientEmail WHERE clientId = :clientId';
     $stmt = $db->prepare($sql);

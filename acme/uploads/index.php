@@ -10,10 +10,15 @@ require_once '../model/acme-model.php';
 require_once '../model/products-model.php';
 require_once '../model/uploads-model.php';
 require_once '../library/functions.php';
+require_once'../model/reviews-model.php';
 
 $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
+}
+
+if (isset($_COOKIE['firstname'])) {
+    $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
 }
 
 // Get the array of categories
@@ -53,7 +58,7 @@ switch ($action) {
             if ($result) {
                 $message = '<p class="result2">The upload succeeded.</p>';
             } else {
-                $message = '<p class="resul2t">Sorry, the upload failed.</p>';
+                $message = '<p class="resul2">Sorry, the upload failed.</p>';
             }
         }
 

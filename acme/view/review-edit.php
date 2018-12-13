@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title><?php echo $products['invName']; ?> Products | Acme, Inc.</title>
+        <title>Edit Reviews | ACME Inc. </title>
         <meta name="description" content="Template page for CIT336 Enhancement#1">
 
         <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
@@ -27,55 +27,32 @@
 
         <!--main styles-->
         <main class="top-layer">  
-            <?php
-            if (isset($message)) {
-                echo $message;
-            }
-            ?>
-            <?php
-            if (isset($prodDetailDisplay)) {
-                echo $prodDetailDisplay;
-            }
-            ?>
+            <h1>Edit Review</h1>
 
-            <hr>
-            <section>
-                <h2 class="add-image">Product Thumbnails</h2>
+            <div class="req_password">            
                 <?php
-                if (isset($displayThumbnail)) {
-                    echo $displayThumbnail;
+                if (isset($message)) {
+                    echo $message;
                 }
                 ?>
-            </section>
-            <br>
-            <hr>
-            <section>
-                <h3>Customer Reviews</h3>
-                <?php
-                if (isset($_SESSION['message'])) {
-                    echo $_SESSION['message'];
-                }
-                ?>
+            </div>
 
-                <?php
-                if (isset($_SESSION['loggedin'])) {
-                    echo $reviewDisplay;
-                } else {
-                    echo '<p class="result2">Please login to add a review.</p> <a href="/acme/accounts/index.php?action=login"  ><div class="adminBtn">Login</div></a><br><hr>';
-                }
-                ?>
-
-                <?php
-                if (isset($allReviews)) {
-                    echo $allReviews;
-                }
-                ?>
-            </section>
+            <form  method="post" action="/acme/reviews/">
+                <fieldset>
+                    <label>Product Review</label><textarea  name="reviewText" id="reviewText" placeholder="Description" required><?php if(isset($reviewText)){ echo $reviewText; } elseif(isset($specificReview['reviewText'])) {echo $specificReview['reviewText']; }?></textarea>
+                <input type="submit" value="Submit Edited Review" class="reviewBtn">
+                </fieldset>
+                <input type="hidden" name="action" value="updateReview">
+                <input type="hidden" name="reviewId" value="<?php if(isset($specificReview['reviewId'])){echo $specificReview['reviewId'];} else if(isset($reviewId)){echo $reviewId;}?>">
+            </form>
         </main>
+    
+        
+        
 
         <!--footer-->
         <footer class="top-layer">
-            <?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/footer.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/footer.php'; ?>
         </footer>
 
         <!--scripts-->
@@ -84,4 +61,5 @@
 
     </body>
 </html>
-<?php unset($_SESSION['message']); ?>
+
+

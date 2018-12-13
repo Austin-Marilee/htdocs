@@ -60,6 +60,7 @@ function getProductBasics() {
 }
 
 // Get product information by invId
+//Get data for a featured inventory item
 function getProductInfo($invId) {
     $db = acmeConnect();
     $sql = 'SELECT * FROM inventory WHERE invId = :invId';
@@ -118,4 +119,43 @@ function getProductsByCategory($categoryName) {
     $stmt->closeCursor();
     return $products;
 }
+
+//// Gets featured  information 
+//function getFeatured($invId) {
+//    $db = acmeConnect();
+//    $sql = "SELECT invId, invName, invDescription, invFeatured invImage FROM inventory WHERE invFeatured  = TRUE  AND invId =:invId";
+//    $stmt = $db->prepare($sql);
+//    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+//    $stmt->execute();
+//    $featured = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//    $stmt->closeCursor();
+//    return $featured;
+//}
+//
+////Set featured Item to NULL
+//function clearFeatured($invId, $invFeatured) {
+//    $db = acmeConnect();
+//    $sql = 'UPDATE inventory SET invFeatured = :invFeatured  WHERE invId = :invId';
+//    $stmt = $db->prepare($sql);
+//    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+//    $stmt->bindValue(':invFeatured', $invFeatured, PDO::PARAM_NULL);
+//    $stmt->execute();
+//    $rowsChanged = $stmt->rowCount();
+//    $stmt->closeCursor();
+//    return $rowsChanged;
+//}
+//
+////Set an inventory item featured settings to TRUE (1)
+//function setFeatured($invId, $invFeatured) {
+//    $db = acmeConnect();
+//    $sql = 'UPDATE inventory SET invFeatured = TRUE  WHERE invId = :invId';
+//    $stmt = $db->prepare($sql);
+//    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+//    $stmt->bindValue(':TRUE', $invFeatured, PDO::PARAM_BOOL);
+//    $stmt->execute();
+//    $rowsChanged = $stmt->rowCount();
+//    $stmt->closeCursor();
+//    return $rowsChanged;
+//}
+
 

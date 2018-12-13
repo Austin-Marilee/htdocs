@@ -16,8 +16,8 @@
         margin-top: 5px;
         max-width: 400px;
     }
-ul#prod-display {
-    grid-template-columns: repeat(3, 1fr);
-
-}
+    ul#prod-display {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    section.reviews { position: absolute; left: 700px;}
 }

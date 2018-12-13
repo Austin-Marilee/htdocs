@@ -11,14 +11,7 @@
     nav ul li:nth-child(1) {
         margin-left: 15px;
     }
-        nav ul.mainmneu, li.active a {
-        margin: 5px 5px 0px 5px;
-        border-radius: 10px 10px 0 0;
-}
-    nav ul li a:hover {
-        margin: 5px 5px 0px 5px;
-        border-radius: 10px 10px 0 0;
-}
+
     nav button {display: none;}
     nav ul.hide {display: inline-flex;}
     nav ul li { display: inline-flex; }
@@ -30,7 +23,8 @@ img.folder { max-width: 100px;}
 footer { font-size: 20px;}
 h1 {font-size: 2rem;}
 ul.rocket_ad { font-size:  1.6rem;}
-section.reviews {float: right;}
+section.recipies_reviews {position: relative;}
+section.reviews {position: absolute; left: 500px;}
 ul.reviews {font-size: 1.2rem;}
 figcaption {font-size: 1.2rem;}
 
@@ -41,13 +35,21 @@ grid-template-columns: repeat(2, 1fr);
 /*--DETAILS--*/
 section#prod-details img {
     float: left;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
 }
 
 section#prod-details {
-        margin-bottom: 300px;
+        margin-bottom: 200px;
 }
 section#prod-details p {
     max-width: 1000px;
+}
+
+ul#image-display {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.review {
+    max-width: 600px;
 }
 }

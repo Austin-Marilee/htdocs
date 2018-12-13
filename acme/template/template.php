@@ -8,10 +8,10 @@
         <meta name="description" content="Template page for CIT336 Enhancement#1">
 
         <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
-        <link href="styles/normalize.css" rel="stylesheet" type="text/css" media="screen"> <!-- normalize useragent/browser defaults -->
-        <link href="styles/main.css" rel="stylesheet"  type="text/css" media="screen">    <!-- default styles - small/phone views -->
-        <link href="styles/medium.css" rel="stylesheet"  type="text/css" media="screen">  <!-- medium/tablet views -->
-        <link href="styles/large.css" rel="stylesheet"  type="text/css" media="screen">   <!-- large/wide/desktop views -->
+        <link href="../styles/normalize.css" rel="stylesheet" type="text/css" media="screen"> <!-- normalize useragent/browser defaults -->
+        <link href="../styles/main.css" rel="stylesheet"  type="text/css" media="screen">    <!-- default styles - small/phone views -->
+        <link href="../styles/medium.css" rel="stylesheet"  type="text/css" media="screen">  <!-- medium/tablet views -->
+        <link href="../styles/large.css" rel="stylesheet"  type="text/css" media="screen">   <!-- large/wide/desktop views -->
     </head>
 
     <body>

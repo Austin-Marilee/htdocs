@@ -4,17 +4,23 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/acme/view/management.php</file>
+            <file>file:/C:/xampp/htdocs/acme/view/review-delete.php</file>
             <file>file:/C:/xampp/htdocs/acme/view/prod-delete.php</file>
             <file>file:/C:/xampp/htdocs/acme/model/products-model.php</file>
             <file>file:/C:/xampp/htdocs/acme/view/admin.php</file>
+            <file>file:/C:/xampp/htdocs/acme/images/products/file_2667_siamese-cat-breed-tn.jpg</file>
             <file>file:/C:/xampp/htdocs/acme/view/product.php</file>
             <file>file:/C:/xampp/htdocs/acme/library/functions.php</file>
+            <file>file:/C:/xampp/htdocs/acme/model/reviews-model.php</file>
             <file>file:/C:/xampp/htdocs/acme/library/connections.php</file>
+            <file>file:/C:/xampp/htdocs/acme/reviews/index.php</file>
             <file>file:/C:/xampp/htdocs/acme/model/accounts-model.php</file>
             <file>file:/C:/xampp/htdocs/acme/common/footer.php</file>
+            <file>file:/C:/xampp/htdocs/acme/view/500.php</file>
             <file>file:/C:/xampp/htdocs/acme/view/home.php</file>
             <file>file:/C:/xampp/htdocs/acme/view/image-admin.php</file>
             <file>file:/C:/xampp/htdocs/acme/accounts/index.php</file>
+            <file>file:/C:/xampp/htdocs/acme/scripts/mainmenu.js</file>
             <file>file:/C:/xampp/htdocs/acme/styles/large.css</file>
             <file>file:/C:/xampp/htdocs/acme/common/navigation.php</file>
             <file>file:/C:/xampp/htdocs/acme/styles/main.css</file>
@@ -28,12 +34,12 @@
             <file>file:/C:/xampp/htdocs/acme/view/product-detail.php</file>
             <file>file:/C:/xampp/htdocs/acme/view/prod-update.php</file>
             <file>file:/C:/xampp/htdocs/acme/model/uploads-model.php</file>
-            <file>file:/C:/xampp/htdocs/acme/images/products/anvil.png</file>
             <file>file:/C:/xampp/htdocs/acme/uploads/index.php</file>
             <file>file:/C:/xampp/htdocs/acme/index.php</file>
             <file>file:/C:/xampp/htdocs/acme/view/category.php</file>
             <file>file:/C:/xampp/htdocs/acme/common/header.php</file>
             <file>file:/C:/xampp/htdocs/acme/styles/medium.css</file>
+            <file>file:/C:/xampp/htdocs/acme/view/review-edit.php</file>
             <file>file:/C:/xampp/htdocs/acme/view/display.php</file>
         </group>
     </open-files>

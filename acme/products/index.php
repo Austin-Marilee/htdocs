@@ -6,23 +6,27 @@
 
 // Create or access a Session
 session_start();
-
-// Get the database connection file
 require_once '../library/connections.php';
-// Get the acme model for use as needed
-require_once '../library/functions.php';
-// Get the acme model for use as needed
 require_once '../model/acme-model.php';
-// Get the accounts model
 require_once '../model/products-model.php';
+require_once '../model/uploads-model.php';
+require_once '../library/functions.php';
+require_once'../model/reviews-model.php';
+require_once'../model/accounts-model.php';
+
 
 // Get the array of categories
 $categories = getCategories();
+
 
 // Get the value from the action name - value pair
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
+}
+
+if (isset($_COOKIE['firstname'])) {
+    $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
 }
 
 switch ($action) {
@@ -58,7 +62,7 @@ switch ($action) {
 // Check and report the result
         if ($regOutcome === 1) {
             $message = "<p class='result'>You successfully added $invName to the database.</p>";
-                        $_SESSION['message'] = $message;
+            $_SESSION['message'] = $message;
             header('location: /acme/products/');
             exit;
         } else {
@@ -96,7 +100,7 @@ switch ($action) {
     case 'productView':
         include '../view/product.php';
         break;
-    
+
     case 'categoryView':
         include '../view/category.php';
         break;
@@ -162,6 +166,25 @@ switch ($action) {
         exit;
         break;
 
+//    case 'fea':
+//        //Obtain data for any currently featured product getProductInfo($invId)
+//        $invId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+//
+//        $featured = getFeatured($invId);
+//        if ($featured) {
+//            $featuredCleared = clearFeatured($invId, $invFeatured);
+//            $message = "<p class='result2'>$invName is no longer featured.</p>";
+//        } else {
+//            $featuredSet = setFeatured($invId, $invFeatured);
+//            $products = getProductInfo($invId);
+//            $featuredDisplay = buildFeatured($products);
+//
+//            $message = "<p class='reslut2'>$products[invName] is now featured.</p>";
+//            $_SESSION['message'] = $message;
+//        }
+//        header('location: /acme/products/');
+//        break;
+
     case 'deleteProd':
         // Filter and store the data
         $invName = filter_input(INPUT_POST, 'invName', FILTER_SANITIZE_STRING);
@@ -194,32 +217,48 @@ switch ($action) {
         break;
 
     case 'product':
-        $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_STRING);
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
+        $reviewId = filter_input(INPUT_POST, 'reviewId', FILTER_SANITIZE_NUMBER_INT);
+        $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+
         $products = getProductInfo($invId);
+        $thumbnail = getThumbnail($invId);
+        $reviews = getReviews($invId);
+        $reviewArray =  getReviewInfo($clientId);
+
         if (!count($products)) {
             $message = "<p class='notice'>Sorry, no $invName could be found.</p>";
         } else {
             $prodDetailDisplay = buildProductsDetails($products);
+            $displayThumbnail = buildThumbnailDisplay($thumbnail);
+            $allReviews = buildAllReviews($reviews);
+        }
+
+        if (isset($_SESSION['loggedin'])) {
+            $reviewDisplay = buildReviewDisplay($products);
         }
         include '../view/product-detail.php';
+
         break;
-        
+
     default:
         $products = getProductBasics();
         if (count($products) > 0) {
             $prodList = '<table>';
             $prodList .= '<thead>';
-            $prodList .= '<tr><th>Product Name</th><td>&nbsp;</td><td>&nbsp;</td></tr>';
+            $prodList .= '<tr><th>Product Name</th><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
             $prodList .= '</thead>';
             $prodList .= '<tbody>';
             foreach ($products as $product) {
                 $prodList .= "<tr><td>$product[invName]</td>";
                 $prodList .= "<td><a href='/acme/products?action=mod&id=$product[invId]' title='Click to modify'>Modify</a></td>";
-                $prodList .= "<td><a href='/acme/products?action=del&id=$product[invId]' title='Click to delete'>Delete</a></td></tr>";
+                $prodList .= "<td><a href='/acme/products?action=del&id=$product[invId]' title='Click to delete'>Delete</a></td>";
+                $prodList .= "<td><a href='/acme/products?action=fea&id=$product[invId]' title='Click to feature'>Feature</a></td></tr>";
             }
             $prodList .= '</tbody></table>';
+            include '../view/management.php';
         } else {
             $message = '<p class="result">Sorry, no products were returned.</p>';
         }
-        include '../view/management.php';
-}
+
+}    

@@ -14,6 +14,7 @@ require_once 'model/acme-model.php';
 // Get the helper functions
 require_once 'library/functions.php';
 
+
 // Get the array of categories
 $categories = getCategories();
 

@@ -65,9 +65,16 @@ function checkExistingImage($imgName){
  return $imageMatch;
 }
 
-//In the uploads model, build a new function that will obtain thumbnail image information from the "images" table that are based on the productId. You will need to use the LIKE operator in your SQL query to find "-tn" in the file name.
-
-function getThumb($invId, ) {
-    $db = acmeConnect();
-    $sql = 'SELECT img
+// Gets thumbnail information 
+function getThumbnail($invId){
+ $db = acmeConnect();
+ $sql = "SELECT imgId, imgName, imgPath, imgDate FROM images WHERE imgName  LIKE '%-tn%' AND invId = :invId";
+ $stmt = $db->prepare($sql);
+  $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+ $stmt->execute();
+ $thumbnail= $stmt->fetchAll(PDO::FETCH_ASSOC);
+ $stmt->closeCursor();
+ return $thumbnail;
 }
+
+
