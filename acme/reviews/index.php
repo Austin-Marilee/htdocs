@@ -64,6 +64,11 @@ $message = "<p class='result'>Sorry, but adding the review  was unsucessful.</p>
 exit;
 }
 
+$products = getProductInfo($invId);
+$thumbnail = getThumbnail($invId);
+$reviews = getReviews($invId);
+$clientInfo = getReviewInfo($clientId);
+
 if (!count($products)) {
 $message = "<p class='notice'>Sorry, no $invName could be found.</p>";
 } else {
