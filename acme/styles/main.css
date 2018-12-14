@@ -427,7 +427,7 @@ ul#prod-display span {
 
 /*--DETAILS--*/
 section#prod-details img {
-    margin: 0 30px 30px 30px;
+    margin: 0 30px 0px 30px;
 }
 section#prod-details ul {
     list-style-type: none;

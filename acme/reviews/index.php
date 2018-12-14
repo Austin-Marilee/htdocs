@@ -34,24 +34,35 @@ $reviewDate = filter_input(INPUT_POST, 'reviewDate', FILTER_SANITIZE_STRING);
 $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
 $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
 
-$addReview = insertReview($reviewId, $reviewText, $reviewDate, $invId, $clientId);
+$products = getProductInfo($invId);
+$thumbnail = getThumbnail($invId);
+$reviews = getReviews($invId);
+$clientInfo = getReviewInfo($clientId);
+
+if (!count($products)) {
+$message = "<p class='notice'>Sorry, no $invName could be found.</p>";
+} else {
+$allReviews = buildAllReviews($reviews);
+$prodDetailDisplay = buildProductsDetails($products);
+$displayThumbnail = buildThumbnailDisplay($thumbnail);
+}
+
+if (isset($_SESSION['loggedin'])) {
+$reviewDisplay = buildReviewDisplay($products);
+}
+
 if (empty($reviewText)) {
 $_SESSION['message'] = '<p class="result2">*Please provide a review before submitting.</p>';
 include '../view/product-detail.php';
 exit;
 }
-
+$addReview = insertReview($reviewId, $reviewText, $reviewDate, $invId, $clientId);
 if ($addReview === 1) {
 $_SESSION['message'] = "<p class='result2'>You successfully added a review.</p>";
 } else {
 $message = "<p class='result'>Sorry, but adding the review  was unsucessful.</p>";
 exit;
 }
-
-$products = getProductInfo($invId);
-$thumbnail = getThumbnail($invId);
-$reviews = getReviews($invId);
-$clientInfo = getReviewInfo($clientId);
 
 if (!count($products)) {
 $message = "<p class='notice'>Sorry, no $invName could be found.</p>";

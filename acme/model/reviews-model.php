@@ -23,7 +23,7 @@ function insertReview($reviewId, $reviewText, $reviewDate, $invId, $clientId) {
 //Get reviews written by a specific client
 function getReviewInfo($clientId) {
     $db = acmeConnect();
-    $sql = 'SELECT reviewId, reviewText, reviewDate, clients.clientId, clientFirstname, clientLastname FROM reviews JOIN clients ON reviews.clientId = clients.clientId WHERE clients.clientId = :clientId';
+    $sql = 'SELECT reviewId, reviewText, reviewDate, clients.clientId, clientFirstname, clientLastname, inventory.invId, invName FROM reviews JOIN clients ON reviews.clientId = clients.clientId JOIN  inventory ON reviews.invId = inventory.invId WHERE clients.clientId = :clientId';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
     $stmt->execute();
@@ -47,7 +47,7 @@ function getReviews($invId) {
 //Get Basic review  information from database for update and delete processes
 function getSpecificReview($reviewId) {
     $db = acmeConnect();
-    $sql = 'SELECT reviewId, reviewText FROM reviews WHERE reviewId = :reviewId';
+    $sql = 'SELECT reviewId, reviewText, inventory.invName FROM reviews JOIN inventory ON reviews.invId = inventory.invId WHERE reviewId = :reviewId';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':reviewId', $reviewId, PDO::PARAM_INT);
     $stmt->execute();
@@ -63,7 +63,7 @@ function updateReview($reviewId, $reviewText) {
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':reviewId', $reviewId, PDO::PARAM_INT);
     $stmt->bindValue(':reviewText', $reviewText, PDO::PARAM_STR);
-     $stmt->execute();
+    $stmt->execute();
     $rowsChanged = $stmt->rowCount();
     $stmt->closeCursor();
     return $rowsChanged;

@@ -1,9 +1,9 @@
 <?php
 if (!$_SESSION['loggedin']) {
-    header('Location: /acme/');
+      header('Location: /acme/');
 }
 if (isset($_SESSION['message'])) {
-    $message = $_SESSION['message'];
+      $message = $_SESSION['message'];
 }
 ?>
 <!DOCTYPE html>
@@ -43,7 +43,7 @@ if (isset($_SESSION['message'])) {
             <div>   
                 <?php
                 if (isset($_SESSION['message'])) {
-                    echo $_SESSION['message'];
+                      echo $_SESSION['message'];
                 }
                 ?>
             </div>
@@ -59,7 +59,7 @@ if (isset($_SESSION['message'])) {
             <!--Displays the list of reviews-->
             <?php
             if ($_SESSION['clientData']['clientLevel'] > 1) {
-                echo '<br><br> <hr><div class="admin">
+                  echo '<br><br> <hr><div class="admin">
                 <h3>Administration</h3>
                 <p>Click here to manage products.</p><a href="/acme/products/index.php"><p class="addBtn">Product Management</p></a><br>
                 <a href="/acme/uploads/"><p class="addBtn">Image Management</p></a></div>';
@@ -68,13 +68,13 @@ if (isset($_SESSION['message'])) {
 
             <?php
             if (isset($reviewList)) {
-                echo ' <br><br> <hr><h3>Manage Reviews</h3>';
-                                                if (isset($_SESSION['message2'])) {
-                    echo $_SESSION['message2'];
-                }
- echo $reviewList;
+                  echo ' <br><br> <hr><h3>Manage Reviews</h3>';
+                  if (isset($_SESSION['message2'])) {
+                        echo $_SESSION['message2'];
+                  }
+                  echo $reviewList;
             } else {
-                echo '<br><hr><p class="result2">Please  leave a product review. We would love to hear from you.</p>';
+                  echo '<br><hr><p class="result2">Please  leave a product review. We would love to hear from you.</p>';
             }
             ?>
         </main>

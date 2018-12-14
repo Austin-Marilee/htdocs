@@ -27,7 +27,7 @@
 
         <!--main styles-->
         <main class="top-layer">  
-            <h1>Delete Review</h1>
+<h1><?php if(isset($specificReview['invName'])){ echo "Delete $specificReview[invName] Review ";} elseif(isset($invName)) { echo $invName; }?></h1>
 
             <div class="req_password"> The delete is permanent. Please confirm review deletion. </div>
 
