@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2018 at 11:17 PM
+-- Generation Time: Dec 17, 2018 at 11:25 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -93,7 +93,8 @@ INSERT INTO `clients` (`clientId`, `clientFirstname`, `clientLastname`, `clientE
 (49, 'Wile', 'Coyote', 'smash@mail.com', '$2y$10$p0S40o/Ywi26pW/m0/vlpejIVTi84IYhULtjD6Rco..AChDNYyyJq', '1', ''),
 (50, 'Tooth', 'Fairy', 'pillow@mail.com', '$2y$10$ni96HrpYJKfAG/4IBGHpx.u4QZ/aboQpdZGiqqQK9mt0oF.bpSxoe', '1', ''),
 (51, 'Santa', 'Clause', 'northpole@mail.com', '$2y$10$lKjIc6BdsFCuPQdQivvSounrc98rg2VxKCfhEcqBPQ.PT5G9I8we.', '1', ''),
-(52, 'Darth', 'Vader', 'rebellion@mail.com', '$2y$10$yLd6rp1uAeWDvKZnU7p9u.3Jm2pudarayYEq6bh9wdGzXnOJpX0yi', '1', '');
+(52, 'Darth', 'Vader', 'rebellion@mail.com', '$2y$10$yLd6rp1uAeWDvKZnU7p9u.3Jm2pudarayYEq6bh9wdGzXnOJpX0yi', '1', ''),
+(53, 'Elmer', 'Fudd', 'acme@mail.com', '$2y$10$KRErqzxelLsUNdTehTpuZ.wFDFwJU0YXRmvA9gGtzOJoIl0ckHNJ2', '1', '');
 
 -- --------------------------------------------------------
 
@@ -298,7 +299,8 @@ INSERT INTO `reviews` (`reviewId`, `reviewText`, `reviewDate`, `invId`, `clientI
 (124, 'Someone blew up my wall!', '2018-12-14 22:03:03', 17, 27),
 (125, 'If only I could bounce back as easily.', '2018-12-14 22:04:06', 9, 27),
 (126, 'I wonder why no one has bought this product.', '2018-12-14 22:06:21', 15, 27),
-(127, 'I used the force to move this rocket. It amazed all my stormtroopers.', '2018-12-14 22:10:36', 1, 52);
+(127, 'I used the force to move this rocket. It amazed all my stormtroopers.', '2018-12-14 22:10:36', 1, 52),
+(128, 'I&#39;ve used this to catch a pesky rabbit. I&#39;ve caught him many times. The problem is he gets away.', '2018-12-17 21:50:09', 15, 53);
 
 --
 -- Indexes for dumped tables
@@ -353,7 +355,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `clientId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `clientId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `images`
@@ -371,7 +373,7 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `reviewId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+  MODIFY `reviewId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 
 --
 -- Constraints for dumped tables

@@ -248,7 +248,7 @@ switch ($action) {
             if (count($reviewArray) > 0) {
                   $reviewList = '<table>';
                   $reviewList .= '<thead>';
-                  $reviewList .= '<tr><th>Date</th><th>Product</th><th>Reviews</th><td>&nbsp;</td></tr>';
+                  $reviewList .= '<tr><th>Date</th><th>Product</th><th colspan="3">Reviews</th></tr>';
                   $reviewList .= '</thead><tbody>';
                   foreach ($reviewArray as $review) {
                         $madeDate = $review['reviewDate'];
